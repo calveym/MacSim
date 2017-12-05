@@ -4,6 +4,7 @@ import java.awt.event.*;
 public class MacSim implements ActionListener {
 
     Country country;
+    long tick = 0;
 
     public static void main(String[] args) {
         MacSim sim = new MacSim();
@@ -13,6 +14,8 @@ public class MacSim implements ActionListener {
 
     public void startSimulation() {
         // Setup instant vars
+        log("Starting Simulation...");
+        log("");
         country = createCountry();
 
         Timer timer = new Timer(100, this);
@@ -21,12 +24,26 @@ public class MacSim implements ActionListener {
     }
 
     Country createCountry() {
-        return new Country(15, 3);
+
+        return new Country(150, 10);
     }
 
     void sim(Country country) {
-        log(".");
-        country.tick();
+        tick++; // advance simulation by 1 tick
+        p(".");
+
+        if(tick%100 == 0) {
+            // One year
+            log("");
+            log("A year has passed");
+            log("");
+        } else if(tick%25 == 0) {
+            // One quarter
+            log("");
+            log("A quarter has passed");
+        }
+
+        country.tick(tick);
     }
 
     // simloop scheduler

@@ -5,9 +5,13 @@ public class Country {
     // Politics
     Government government;
 
-    // Economy
+    // Sentiment
     double confidence; // -1 < x < 1
+
+
+    // Economy
     ArrayList<Company> companies = new ArrayList<Company>();
+    int coId = 0;
     double inflation;
     double gdp;
 
@@ -25,6 +29,12 @@ public class Country {
 
     public Country(int newPop, int numCo) {
         // Create components
+
+        MacSim.log("Creating Country... ");
+        MacSim.log("Population: " + Integer.toString(newPop));
+        MacSim.log(Integer.toString(numCo) + " Companies active in economy");
+        MacSim.log("");
+        unemployed = newPop;
         government = new Government();
         population = newPop;
         confidence = 0.5;
@@ -34,9 +44,9 @@ public class Country {
 
     // Simulation Loop
 
-    public void tick() {
+    public void tick(long tick) {
         for(Company co : companies) {
-
+            co.tick(tick);
         }
     }
 
@@ -52,15 +62,25 @@ public class Country {
         // work tick for all companies
         // recalc gdp
     void generateCompanies(int num) {
+        int each = (int)(unemployed / num);
+        int remainder = unemployed % num;
+        MacSim.log("Employees per company:  " + each);
+
         for(int i = 0; i < num; i++) {
-            generateCompany();
+            if(i < remainder){
+                generateCompany(each + remainder);
+            } else {
+                generateCompany(each);
+            }
         }
-        tryHire();
+
+        unemployed = 0;
     }
 
-    void generateCompany() {
-        Company newCo = new Company();
+    void generateCompany(int hire) {
+        Company newCo = new Company(this, hire, coId);
         companies.add(newCo);
+        coId++;
     }
 
 
@@ -73,11 +93,6 @@ public class Country {
 
     // search for jobs for unemployed population
     public void jobSearch() {
-
-    }
-
-    // only used when generating new economy
-    void tryHire() {
 
     }
 }
