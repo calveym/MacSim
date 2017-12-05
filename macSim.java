@@ -1,7 +1,9 @@
+import java.applet.*;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.Timer;
 
-public class MacSim implements ActionListener {
+public class MacSim extends Applet implements ActionListener {
 
     Country country;
     long tick = 0;
