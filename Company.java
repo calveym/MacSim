@@ -96,7 +96,7 @@ public class Company {
     }
 
     double calculateRevenue() {;
-        return multiplier * reach * 0.005;
+        return (multiplier * reach * 0.005) * country.confidenceEarningsMultiplier;
     }
 
     double calculateExpenses() {
