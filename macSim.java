@@ -15,10 +15,8 @@ public class MacSim implements ActionListener {
         // Setup instant vars
         country = createCountry();
 
-
-
         Timer timer = new Timer(100, this);
-        timer.setInitialDelay(500);
+        timer.setInitialDelay(10);
         timer.start();
     }
 
@@ -27,11 +25,20 @@ public class MacSim implements ActionListener {
     }
 
     void sim(Country country) {
+        log(".");
         country.tick();
     }
 
     // simloop scheduler
     public void actionPerformed(ActionEvent e) {
         sim(country);
+    }
+
+    public static void log(String s) {
+        System.out.println(s);
+    }
+
+    public static void p(String s) {
+        System.out.print(s);
     }
 }
