@@ -11,6 +11,7 @@ public class Country {
 
     // Economy
     ArrayList<Company> companies = new ArrayList<Company>();
+    Company mainCo;
     int coId = 0;
     double inflation;
     double gdp;
@@ -38,6 +39,7 @@ public class Country {
         government = new Government();
         population = newPop;
         confidence = 0.5;
+        generateUniqueCompany(3);
         generateCompanies(numCo);
     }
 
@@ -48,6 +50,7 @@ public class Country {
         for(Company co : companies) {
             co.tick(tick);
         }
+        calculateGDP();
     }
 
 
@@ -58,9 +61,17 @@ public class Country {
 
     // Economy
 
-        // do updates:
-        // work tick for all companies
-        // recalc gdp
+    void calculateGDP() {
+
+    }
+
+    void generateUniqueCompany(int numEmp) {
+        mainCo = new Company(this, numEmp, 0);
+        companies.add(mainCo);
+        unemployed -= numEmp;
+        coId++;
+    }
+
     void generateCompanies(int num) {
         int each = (int)(unemployed / num);
         int remainder = unemployed % num;

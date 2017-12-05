@@ -10,17 +10,21 @@ public class Company {
     int technology; // 0 - 100 score for innovation
     int education; // 0 - 5 score for education
     int employees; // number of employees
-    int servable; // servable population, aka max capacity
+    int multiplier; // multiplier calculated from education and technology
+    int salary;
+
 
     // Money
-    double assets;
-    double capital;
+    long assets;
+    long capital;
     double debt;
     double debtPayment;
     double interest;
+    double maintenance;
 
 
     // Money - flow
+    int reach; // people this business reached in last tick
     double revenue;
     double expenses;
     double profit;
@@ -43,10 +47,12 @@ public class Company {
         capital = 25000;
         debt = 0;
         interest = 0.01;
+        maintenance = 0.1;
 
         employees = numEmp;
         education = 2;
         technology = 20;
+        salary = 15000;
     }
 
     public void tick(long tick) {
@@ -61,7 +67,8 @@ public class Company {
             lqProfit = 0;
         }
 
-        updateServable();
+        updateMultiplier();
+        updateReach();
 
         revenue = calculateRevenue();
         expenses = calculateExpenses();
@@ -79,6 +86,7 @@ public class Company {
     void quarterlyReport() {
         log(" ");
         log("Quarterly report: " + id);
+        log("Assets: " + assets);
         log("Capital: " + capital);
         log("Employees: " + employees);
         log("Profit: " + lqProfit);
@@ -87,17 +95,25 @@ public class Company {
         log(" ");
     }
 
-    double calculateRevenue() {
-        int productivity = employees * (education+1);
-        return country.population * productivity;
+    double calculateRevenue() {;
+        return multiplier * reach * 0.005;
     }
 
     double calculateExpenses() {
-        return (employees * (education+1) * (servable));
+        return ((employees * salary * multiplier) + chargeForAssets()) * 0.01;
     }
 
-    void updateServable() {
-        servable = (education + 1) * technology;
+    double chargeForAssets() {
+        return assets * maintenance;
+    }
+
+    void updateReach() {
+        double inTech = 100 / (technology);
+        reach = country.population * (int)((inTech) * employees);
+    }
+
+    void updateMultiplier() {
+        multiplier = (education + 1) * (technology / 20);
     }
 
     public static void log(String s) {

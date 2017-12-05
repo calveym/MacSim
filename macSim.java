@@ -1,5 +1,5 @@
-import javax.swing.Timer;
 import java.awt.event.*;
+import javax.swing.Timer;
 
 public class MacSim implements ActionListener {
 
@@ -19,13 +19,13 @@ public class MacSim implements ActionListener {
         country = createCountry();
 
         Timer timer = new Timer(100, this);
-        timer.setInitialDelay(10);
+        timer.setInitialDelay(1000);
         timer.start();
     }
 
     Country createCountry() {
 
-        return new Country(150, 10);
+        return new Country(15000, 500);
     }
 
     void sim(Country country) {
