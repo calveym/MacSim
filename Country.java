@@ -24,7 +24,9 @@ public class Country {
     double inflation;
     long gdp; // Gross Domestic Product, or total economic productivity in last tick extrapolated over a quarter
     double dGdp; // gdp delta from last tick
+    long qGdp; // Quarterly GDP
     long lqGdp; // GDP at end of last quarter
+    double lqdGdp; // Quarterly GDP change
 
     // Social
     int population;
@@ -82,9 +84,14 @@ public class Country {
     // Economy
 
     void quarterlyReport() {
+        if(lqGdp != 0)
+            lqdGdp = (qGdp/lqGdp) - 1.0;
         log(" ");
         log("Quarterly country status report: ");
-        log("GDP in the last quarter: " + lqGdp);
+        log("GDP in the last quarter: " + qGdp);
+        log("GDP change since last quarter: " + lqdGdp);
+        lqGdp = qGdp;
+        qGdp = 0;
     }
 
     void updateSentiment() {
@@ -109,6 +116,7 @@ public class Country {
             gdp += co.profit;
         }
         gdp *= 100;
+        qGdp += gdp;
 
         if(oldGdp != 0) {
             dGdp = (gdp / oldGdp) - (double)1.0;

@@ -23,7 +23,7 @@ public class MacSim extends Applet implements ActionListener {
         log("");
         country = createCountry();
 
-        Timer timer = new Timer(500, this);
+        Timer timer = new Timer(50, this);
         timer.setInitialDelay(1000);
         timer.start();
     }
