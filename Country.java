@@ -23,8 +23,8 @@ public class Country {
     int coId = 0;
     double inflation;
     long gdp; // Gross Domestic Product, or total economic productivity in last tick extrapolated over a quarter
-    long dGdp; // gdp delta from last tick
-    long qGdp; // GDP at end of last quarter
+    double dGdp; // gdp delta from last tick
+    long lqGdp; // GDP at end of last quarter
 
     // Social
     int population;
@@ -51,7 +51,7 @@ public class Country {
         population = newPop;
         confidence = 0;
         dConfidence = 0;
-        generateUniqueCompany(3);
+        generateUniqueCompany(30);
         generateCompanies(numCo);
     }
 
@@ -59,6 +59,10 @@ public class Country {
     // Simulation Loop
 
     public void tick(long tick) {
+        if(tick%25==0) {
+            quarterlyReport();
+        }
+
         // Update sentiment based on last tick metrics
         updateSentiment();
 
@@ -77,37 +81,40 @@ public class Country {
 
     // Economy
 
+    void quarterlyReport() {
+        log(" ");
+        log("Quarterly country status report: ");
+        log("GDP in the last quarter: " + lqGdp);
+    }
+
     void updateSentiment() {
-        double swing = (double)(rand.nextFloat() - 0.4f);
+        double swing = (double)(rand.nextFloat() - 0.4f) * 4;
         dConfidence = dConfidence += swing;
         dConfidence += rationalizeConfidenceDelta();
-        confidence += (dConfidence);
-        MacSim.log("Confidence: " + Double.toString(confidence));
+        confidence += (dConfidence * 0.2);
         confidenceEarningsMultiplier = (confidence / 100.0) + 1;
     }
 
     double rationalizeConfidenceDelta() {
-        if(confidence >= 50) {
-            // increase chance of recession
-            return -5.0;
-        }   else if(confidence <= -50) {
+        if(confidence <= -50) {
             // increase chance of growth
-            return 25.0;
+            return 1.0;
         } else return (rand.nextFloat() - 0.2) * dGdp;
     }
 
     void calculateGDP() {
-        long oldGdp = gdp;
+        double oldGdp = (double)gdp;
         gdp = 0;
         for(Company co : companies) {
             gdp += co.profit;
         }
-        gdp *= 25;
-        if(oldGdp != 0)
-            dGdp = (gdp / oldGdp) - 1;
-        else
+        gdp *= 100;
+
+        if(oldGdp != 0) {
+            dGdp = (gdp / oldGdp) - (double)1.0;
+        } else {
             dGdp = 0;
-        MacSim.log("Extrapolated quarterly tick GDP: " + gdp);
+        }
     }
 
     void generateUniqueCompany(int numEmp) {
@@ -150,5 +157,13 @@ public class Country {
     // search for jobs for unemployed population
     public void jobSearch() {
 
+    }
+
+    public static void log(String s) {
+        System.out.println(s);
+    }
+
+    public static void p(String s) {
+        System.out.print(s);
     }
 }
