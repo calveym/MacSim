@@ -25,13 +25,13 @@ public class Company {
 
     // Money - flow
     int reach; // people this business reached in last tick
-    double revenue;
-    double expenses;
-    double profit;
+    long revenue;
+    long expenses;
+    long profit;
 
-    double lqRevenue;
-    double lqExpenses;
-    double lqProfit;
+    long lqRevenue;
+    long lqExpenses;
+    long lqProfit;
 
     // Equity
     int stocksOutstanding;
@@ -95,16 +95,16 @@ public class Company {
         log(" ");
     }
 
-    double calculateRevenue() {;
-        return (multiplier * reach * 0.005) * country.confidenceEarningsMultiplier;
+    long calculateRevenue() {;
+        return (long)((multiplier * reach * 0.005) * country.confidenceEarningsMultiplier);
     }
 
-    double calculateExpenses() {
-        return ((employees * salary * multiplier) + chargeForAssets()) * 0.01;
+    long calculateExpenses() {
+        return (long)(((employees * salary * multiplier) + chargeForAssets()) * 0.01);
     }
 
-    double chargeForAssets() {
-        return assets * maintenance;
+    long chargeForAssets() {
+        return (long)(assets * maintenance);
     }
 
     void updateReach() {
