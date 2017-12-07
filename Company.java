@@ -8,9 +8,11 @@ public class Company {
 
     // Employee information
     int technology; // 0 - 100 score for innovation
+    double techVal; // calculated technology score
     int education; // 0 - 5 score for education
     int employees; // number of employees
-    int multiplier; // multiplier calculated from education and technology
+    double multiplier; // multiplier calculated from education    1/2 < x < 3
+    double cumulativeConfidence = 1;
     int salary;
 
 
@@ -60,15 +62,14 @@ public class Company {
             // One year
         } if(tick%25 == 0) {
             // One quarter
+            invest();
+
             if(id == 0)
                 quarterlyReport();
             lqRevenue = 0;
             lqExpenses = 0;
             lqProfit = 0;
         }
-
-        updateMultiplier();
-        updateReach();
 
         revenue = calculateRevenue();
         expenses = calculateExpenses();
@@ -95,25 +96,35 @@ public class Company {
         log(" ");
     }
 
-    long calculateRevenue() {;
-        return (long)((multiplier * reach * 0.005) * country.confidenceEarningsMultiplier);
+    void invest() {
+
+    }
+
+    long calculateRevenue() {
+        // multiplier     (education + 1) / 2.0;
+        // reach
+        reach = updateReach();
+        multiplier = updateMultiplier();
+        cumulativeConfidence *= (1 + country.confidenceEarningsMultiplier * 0.001);
+        return (long)(reach * multiplier * cumulativeConfidence * 0.027);
     }
 
     long calculateExpenses() {
-        return (long)(((employees * salary * multiplier) + chargeForAssets()) * 0.01);
+        return (long)(((employees * salary * multiplier) + chargeForAssets()) * 0.03 * (country.rand.nextDouble() * 0.2 + 0.9));
     }
 
     long chargeForAssets() {
         return (long)(assets * maintenance);
     }
 
-    void updateReach() {
-        double inTech = 100 / (technology);
-        reach = country.population * (int)((inTech) * employees);
+    int updateReach() {
+        techVal = 1.0 - (technology * 0.002 + 0.01);
+        double empTech = (employees) / techVal;
+        return (int)(country.population * (int)empTech);
     }
 
-    void updateMultiplier() {
-        multiplier = (education + 1) * (technology / 20);
+    double updateMultiplier() {
+        return (education + 1) / 2.0;
     }
 
     public static void log(String s) {

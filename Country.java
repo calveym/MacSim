@@ -26,7 +26,7 @@ public class Country {
     double dGdp; // gdp delta from last tick
     long qGdp; // Quarterly GDP
     long lqGdp; // GDP at end of last quarter
-    double lqdGdp; // Quarterly GDP change
+    long lqdGdp; // Quarterly GDP change
 
     // Social
     int population;
@@ -52,7 +52,6 @@ public class Country {
         government = new Government();
         population = newPop;
         confidence = 0;
-        dConfidence = 0;
         generateUniqueCompany(30);
         generateCompanies(numCo);
     }
@@ -85,8 +84,9 @@ public class Country {
 
     void quarterlyReport() {
         if(lqGdp != 0)
-            lqdGdp = (qGdp/lqGdp) - 1.0;
+            lqdGdp = qGdp - lqGdp;
         log(" ");
+        log("Current confidence: " + confidence);
         log("Quarterly country status report: ");
         log("GDP in the last quarter: " + qGdp);
         log("GDP change since last quarter: " + lqdGdp);
@@ -95,18 +95,34 @@ public class Country {
     }
 
     void updateSentiment() {
-        double swing = (double)(rand.nextFloat() - 0.4f) * 4;
-        dConfidence = dConfidence += swing;
-        dConfidence += rationalizeConfidenceDelta();
-        confidence += (dConfidence * 0.2);
+        double oldConfidence = confidence;
+        confidence = 1.4;
+        confidence += volatility();
+        confidence += shock();
+        dConfidence = confidence - oldConfidence;
         confidenceEarningsMultiplier = (confidence / 100.0) + 1;
     }
 
-    double rationalizeConfidenceDelta() {
-        if(confidence <= -50) {
-            // increase chance of growth
-            return 1.0;
-        } else return (rand.nextFloat() - 0.2) * dGdp;
+    double volatility() {
+        double adjuster = rand.nextDouble();
+        adjuster *= 6;
+        adjuster -= 3;
+        return adjuster;
+    }
+
+    double shock() {
+        double shock = 0.0;
+        int minor = rand.nextInt(10);
+        int recession = rand.nextInt(100);
+        int crisis = rand.nextInt(1000);
+        if(minor == 1) {
+            shock += (rand.nextDouble() * 2.5) - 2.0;
+        } if(recession == 1) {
+            shock += (rand.nextDouble() * 7.5) - 5;
+        } if(crisis == 1) {
+            shock += (rand.nextDouble() * 12.5) - 7.5;
+        }
+        return shock;
     }
 
     void calculateGDP() {
