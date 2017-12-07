@@ -22,6 +22,7 @@ public class Country {
     Company mainCo;
     int coId = 0;
     double inflation;
+    int businessCycle = 0; // 0 - 2
     long gdp; // Gross Domestic Product, or total economic productivity in last tick extrapolated over a quarter
     double dGdp; // gdp delta from last tick
     long qGdp; // Quarterly GDP
@@ -96,7 +97,12 @@ public class Country {
 
     void updateSentiment() {
         double oldConfidence = confidence;
+        businessCycle++;
+        if(businessCycle > 2)
+            businessCycle = 0;
         confidence = 1.4;
+        if(businessCycle > 1)
+            confidence -= 1.4;
         confidence += volatility();
         confidence += shock();
         dConfidence = confidence - oldConfidence;
@@ -131,8 +137,8 @@ public class Country {
         for(Company co : companies) {
             gdp += co.profit;
         }
-        gdp *= 100;
         qGdp += gdp;
+        gdp *= 100;
 
         if(oldGdp != 0) {
             dGdp = (gdp / oldGdp) - (double)1.0;
