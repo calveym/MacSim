@@ -88,6 +88,7 @@ public class Country {
             lqdGdp = qGdp - lqGdp;
         log(" ");
         log("Current confidence: " + confidence);
+        log("Confidence earnings multiplier: " + confidenceEarningsMultiplier);
         log("Quarterly country status report: ");
         log("GDP in the last quarter: " + qGdp);
         log("GDP change since last quarter: " + lqdGdp);
@@ -98,16 +99,15 @@ public class Country {
     void updateSentiment() {
         double oldConfidence = confidence;
         businessCycle++;
-        if(businessCycle > 2)
+        if(businessCycle > 12)
             businessCycle = 0;
-        confidence = 0;
-        if(businessCycle > 1)
-            confidence -= 1.4;
+        confidence = 6.5;
+        if(businessCycle > 10)
+            confidence -= 5.4;
         confidence += volatility();
         confidence += shock();
-        dConfidence = confidence - oldConfidence;
-        // confidenceEarningsMultiplier = (confidence / 100.0) + 1;
-        confidenceEarningsMultiplier = 1.00000000000001;
+        confidenceEarningsMultiplier = (confidence / 100.0);
+        // confidenceEarningsMultiplier = 1.00000000000001;
     }
 
     double volatility() {
@@ -123,11 +123,11 @@ public class Country {
         int recession = rand.nextInt(100);
         int crisis = rand.nextInt(1000);
         if(minor == 1) {
-            shock += (rand.nextDouble() * 2.5) - 2.0;
+            shock += (rand.nextDouble() * 2.5) - 1;
         } if(recession == 1) {
-            shock += (rand.nextDouble() * 7.5) - 5;
+            shock += (rand.nextDouble() * 7.5) - 3.5;
         } if(crisis == 1) {
-            shock += (rand.nextDouble() * 12.5) - 7.5;
+            shock += (rand.nextDouble() * 12.5) - 6;
         }
         return shock;
     }
