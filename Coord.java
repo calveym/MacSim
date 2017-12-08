@@ -1,16 +1,16 @@
 public class Coord {
-    public int x, y;
+    public long x, y;
 
-    public Coord(int a, int b) {
+    public Coord(long a, long b) {
         x = a;
         y = b;
     }
 
     public String toString() {
         return "Coordinate: " +
-        Integer.toString(x) +
+        Long.toString(x) +
         ", " +
-        Integer.toString(y);
+        Long.toString(y);
     }
 
 

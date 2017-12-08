@@ -100,13 +100,14 @@ public class Country {
         businessCycle++;
         if(businessCycle > 2)
             businessCycle = 0;
-        confidence = 1.4;
+        confidence = 0;
         if(businessCycle > 1)
             confidence -= 1.4;
         confidence += volatility();
         confidence += shock();
         dConfidence = confidence - oldConfidence;
-        confidenceEarningsMultiplier = (confidence / 100.0) + 1;
+        // confidenceEarningsMultiplier = (confidence / 100.0) + 1;
+        confidenceEarningsMultiplier = 1.00000000000001;
     }
 
     double volatility() {

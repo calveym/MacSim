@@ -8,6 +8,7 @@ public class MacSim extends Applet implements ActionListener {
     // App variables
     InputManager input;
     SimCanvas c;
+    Graph graph;
 
     // Simulation variables
     Country country;
@@ -21,9 +22,12 @@ public class MacSim extends Applet implements ActionListener {
         // Setup instant vars
         log("Starting Simulation...");
         log("");
+        setLayout(new BorderLayout());
         country = createCountry();
+        graph = new Graph();
+        add("Center", graph);
 
-        Timer timer = new Timer(50, this);
+        Timer timer = new Timer(3, this);
         timer.setInitialDelay(1000);
         timer.start();
     }
@@ -46,6 +50,8 @@ public class MacSim extends Applet implements ActionListener {
             // One quarter
             log("");
             log("A quarter has passed");
+            graph.addPoint(new Coord((long)(tick/25), country.qGdp));
+            graph.repaint();
         }
 
         country.tick(tick);

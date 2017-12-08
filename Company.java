@@ -110,7 +110,7 @@ public class Company {
     }
 
     long calculateExpenses() {
-        return (long)(((employees * salary * multiplier) + chargeForAssets()) * 0.03 * (country.rand.nextDouble() * 0.2 + 0.9));
+        return (long)(((employees * salary * multiplier) + chargeForAssets()) * 0.024 * (country.rand.nextDouble() * 0.2 + 0.9) * cumulativeConfidence);
     }
 
     long chargeForAssets() {
