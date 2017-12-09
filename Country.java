@@ -18,7 +18,7 @@ public class Country {
 
 
     // Economy
-    ArrayList<Company> companies = new ArrayList<Company>();
+    public ArrayList<Company> companies = new ArrayList<Company>();
     Company mainCo;
     int coId = 0;
     double inflation;
@@ -50,7 +50,7 @@ public class Country {
         MacSim.log("");
         rand = new Random();
         unemployed = newPop;
-        government = new Government();
+        government = new Government(this);
         population = newPop;
         confidence = 0;
         generateUniqueCompany(30);
@@ -123,11 +123,11 @@ public class Country {
         int recession = rand.nextInt(100);
         int crisis = rand.nextInt(1000);
         if(minor == 1) {
-            shock += (rand.nextDouble() * 2.5) - 1;
+            shock += (rand.nextDouble() * 6.0) - 3;
         } if(recession == 1) {
-            shock += (rand.nextDouble() * 7.5) - 3.5;
+            shock += (rand.nextDouble() * 14.0) - 7;
         } if(crisis == 1) {
-            shock += (rand.nextDouble() * 12.5) - 6;
+            shock += (rand.nextDouble() * 25) - 12.5;
         }
         return shock;
     }

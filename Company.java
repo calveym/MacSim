@@ -2,6 +2,9 @@ import java.util.*;
 
 public class Company {
 
+    boolean suppress = true;
+
+
     Country country; // owner country
 
     int id; // assigned company id
@@ -29,6 +32,7 @@ public class Company {
     int reach; // people this business reached in last tick
     long revenue;
     long expenses;
+    long ebitda;
     long profit;
 
     long lqRevenue;
@@ -74,17 +78,18 @@ public class Company {
         revenue = calculateRevenue();
         expenses = calculateExpenses();
 
-        profit = revenue - expenses;
+        ebitda = revenue - expenses;
         debtPayment = 0.04 * (debt * interest);
-        profit -= debtPayment;
-        capital += profit;
+        ebitda -= debtPayment;
+        capital += ebitda;
 
         lqRevenue += revenue;
         lqExpenses += expenses;
-        lqProfit += profit;
+        lqProfit += ebitda;
     }
 
     void quarterlyReport() {
+        if(suppress) return;
         log(" ");
         log("Quarterly report: " + id);
         log("Assets: " + assets);
@@ -94,6 +99,12 @@ public class Company {
         p("   Revenue: " + lqRevenue);
         p("   Expenses: " + lqExpenses);
         log(" ");
+    }
+
+    long tax(double amount) {
+        long amtTaxable = (long)(amount * ebitda);
+        profit = ebitda - amtTaxable;
+        return amtTaxable;
     }
 
     void invest() {
