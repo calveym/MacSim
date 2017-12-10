@@ -83,6 +83,10 @@ public class Country {
 
     // Economy
 
+    public int getNumCompanies() {
+        return companies.size();
+    }
+
     void quarterlyReport() {
         if(lqGdp != 0)
             lqdGdp = qGdp - lqGdp;
