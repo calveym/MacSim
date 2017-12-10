@@ -20,12 +20,13 @@ public class Company {
 
 
     // Money
-    long assets;
-    long capital;
-    double debt;
-    double debtPayment;
-    double interest;
-    double maintenance;
+    long value; // total value of company
+    long assets; // illiquid assets of company, earns interest
+    long capital; // liquid assets of company
+    long debt; // liabilities
+    double debtPayment; // interest on liabilities
+    double interest; // interest on capital
+    double maintenance; // cost of assets
 
 
     // Money - flow
@@ -52,7 +53,7 @@ public class Company {
         assets = 10000;
         capital = 25000;
         debt = 0;
-        interest = 0.01;
+        interest = 0.02;
         maintenance = 0.1;
 
         employees = numEmp;
@@ -66,7 +67,7 @@ public class Company {
             // One year
         } if(tick%25 == 0) {
             // One quarter
-            invest();
+            // investCapital();
 
             if(id == 0)
                 quarterlyReport();
@@ -77,6 +78,7 @@ public class Company {
 
         revenue = calculateRevenue();
         expenses = calculateExpenses();
+        // revenue += assetRevenue();
 
         ebitda = revenue - expenses;
         debtPayment = 0.04 * (debt * interest);
@@ -85,7 +87,8 @@ public class Company {
 
         lqRevenue += revenue;
         lqExpenses += expenses;
-        lqProfit += ebitda;
+        lqProfit += profit;
+        value = capital + assets - debt;
     }
 
     void quarterlyReport() {
@@ -102,13 +105,48 @@ public class Company {
     }
 
     long tax(double amount) {
-        long amtTaxable = (long)(amount * ebitda);
+        long amtTaxable = (long)((amount * 0.01) * ebitda);
+        if(amtTaxable < 0) return 0;
         profit = ebitda - amtTaxable;
+        // log("Amt taxable: " + amtTaxable);
+        capital -= amtTaxable;
         return amtTaxable;
     }
 
-    void invest() {
+    // inject capital in company
+    void invest(long investAmt) {
+        capital += investAmt;
+    }
 
+    // improves company by spending capital
+    void investCapital() {
+        if(capital > 10000000)
+            majorInvestment();
+        if(capital > 250000)
+            minorInvestment();
+    }
+
+    void majorInvestment() {
+        if(!country.availableUnemployed(20)) {
+            hire(20);
+            convertCapital(5000000);
+        } else {
+            convertCapital(10000000);
+        }
+    }
+
+    void minorInvestment() {
+        if(country.availableUnemployed(5)) {
+            hire(5);
+            convertCapital(175000);
+        } else {
+            convertCapital(250000);
+        }
+    }
+
+    void convertCapital(long amount) {
+        assets += amount;
+        capital -= amount;
     }
 
     long calculateRevenue() {
@@ -126,6 +164,19 @@ public class Company {
 
     long chargeForAssets() {
         return (long)(assets * maintenance);
+    }
+
+    long assetRevenue() {
+        long assetRevenue = (long)(assets * interest);
+        if(id==0)
+            log("Asset revenue: " + assetRevenue);
+        return assetRevenue;
+    }
+
+    void hire(int numToHire) {
+        country.unemployed -= numToHire;
+        country.employed += numToHire;
+        employees += numToHire;
     }
 
     int updateReach() {

@@ -27,7 +27,7 @@ public class MacSim extends Applet implements ActionListener {
         graph = new Graph();
         add("Center", graph);
 
-        Timer timer = new Timer(10, this);
+        Timer timer = new Timer(2, this);
         timer.setInitialDelay(1000);
         timer.start();
     }
@@ -48,7 +48,7 @@ public class MacSim extends Applet implements ActionListener {
             log("Year: " + tick/100);
             log("A year has passed");
             log(" ");
-        } else if(tick%25 == 0) {
+        } else if(tick%25 == 0 && tick > 25) {
             // One quarter
             log(" ");
             log("A quarter has passed");

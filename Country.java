@@ -3,6 +3,8 @@ import java.util.*;
 
 public class Country {
 
+    boolean suppress = false;
+
     // Util
     Random rand;
 
@@ -61,10 +63,6 @@ public class Country {
     // Simulation Loop
 
     public void tick(long tick) {
-        if(tick%25==0) {
-            quarterlyReport();
-        }
-
         // Update sentiment based on last tick metrics
         updateSentiment();
 
@@ -73,8 +71,17 @@ public class Country {
             co.tick(tick);
         }
 
+        government.tick();
+
+        if(tick==10)
+            government.performSpending(10000000, 0, 100000000);
+
         // Update future metrics
         calculateGDP();
+
+        if(tick%25==0) {
+            quarterlyReport();
+        }
     }
 
 
@@ -83,6 +90,7 @@ public class Country {
 
     // Economy
 
+
     public int getNumCompanies() {
         return companies.size();
     }
@@ -90,6 +98,7 @@ public class Country {
     void quarterlyReport() {
         if(lqGdp != 0)
             lqdGdp = qGdp - lqGdp;
+        if(suppress) return;
         log(" ");
         log("Current confidence: " + confidence);
         log("Confidence earnings multiplier: " + confidenceEarningsMultiplier);
@@ -127,11 +136,14 @@ public class Country {
         int recession = rand.nextInt(100);
         int crisis = rand.nextInt(1000);
         if(minor == 1) {
-            shock += (rand.nextDouble() * 6.0) - 3;
+            shock += (rand.nextDouble() * 16.0) - 9;
+            log("Happened 1");
         } if(recession == 1) {
-            shock += (rand.nextDouble() * 14.0) - 7;
+            shock += (rand.nextDouble() * 24.0) - 13;
+            log("Happened 2");
         } if(crisis == 1) {
-            shock += (rand.nextDouble() * 25) - 12.5;
+            shock += (rand.nextDouble() * 45) - 30;
+            log("Happened 3");
         }
         return shock;
     }
@@ -185,14 +197,20 @@ public class Country {
     // Social
 
     public void checkUnemployment() {
-        if(unemployed > 1)
-            jobSearch();
+
     }
 
     // search for jobs for unemployed population
     public void jobSearch() {
 
     }
+
+    public boolean availableUnemployed(int amount) {
+        return unemployed >= amount;
+    }
+
+
+    // Utils
 
     public static void log(String s) {
         System.out.println(s);

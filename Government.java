@@ -4,6 +4,7 @@ public class Government {
 
     int capital;
     int debt;
+    long taxRevenue;
 
     // Fiscal Instruments
     double targetRate;
@@ -14,7 +15,7 @@ public class Government {
 
 
     // Rates
-    double corporateTax = 12.5;
+    double corporateTax = 6.5;
 
 
     public Government(Country c) {
@@ -23,7 +24,7 @@ public class Government {
 
     public void tick() {
         collectTaxes();
-        performSpending();
+        performAutonomousSpending();
     }
 
 
@@ -31,26 +32,32 @@ public class Government {
 
     // tax last tick income
     void collectTaxes() {
-        long taxRevenue = 0;
+        taxRevenue = 0;
         for(Company co : country.companies) {
-            collectTaxableIncome(taxRevenue, co.tax(corporateTax));
+            collectTaxableIncome(co.tax(corporateTax));
         }
-        System.out.println("Total tax revenue this quarter: " + taxRevenue);
+        // System.out.println("Total tax revenue this quarter: " + taxRevenue);
         capital += taxRevenue;
     }
 
     // takes money from individual company
-    void collectTaxableIncome(long revenue, long added) {
-        revenue += added;
+    void collectTaxableIncome(long added) {
+        taxRevenue += added;
     }
 
 
     // Perform spending
 
-    // invest in each company
-    void performSpending() {
-        if(spendingPlanReady) {
-            spendingPlan.start();
+    // reinvesting taxes
+    void performAutonomousSpending() {
+
+    }
+
+    // Start investments in each company
+    void performSpending(long totalSpend, long minBar, long maxBar) {
+        if(!spendingPlanReady) {
+            spendingPlan = new SpendingPlan(country, totalSpend, minBar, maxBar);
         }
+        spendingPlan.start();
     }
 }

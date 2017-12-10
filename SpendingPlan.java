@@ -22,6 +22,7 @@ public class SpendingPlan {
         long perTickSpend = totalSpend / length;
         int numCompanies = country.getNumCompanies();
         for(Company co : country.companies) {
+            if(co.value < minBarrier || co.value > maxBarrier) return;
             co.invest(perTickSpend / numCompanies);
         }
     }
