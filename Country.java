@@ -149,7 +149,7 @@ public class Country {
 
     void updateSentiment() {
         double oldConfidence = confidence;
-        confidence = 0;
+        confidence = 2;
         confidence += cycle.multiplier();
         confidence += volatility();
         confidence += shock();
@@ -159,7 +159,7 @@ public class Country {
 
     void updateBusinessCycle() {
         if(cycle == null || cycle.complete())
-            cycle = new BusinessCycle((rand.nextInt(2) + 1) * 150, 4);
+            cycle = new BusinessCycle((rand.nextInt(2) + 1) * 150, 3);
         cycle.tick();
     }
 
