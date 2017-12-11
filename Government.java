@@ -15,15 +15,20 @@ public class Government {
 
 
     // Rates
-    double corporateTax = 6.5;
+    double corporateTax = 35;
 
 
     public Government(Country c) {
         country = c;
     }
 
-    public void tick() {
-        collectTaxes();
+    public void tick(long tick) {
+        if(tick <= 100)
+        {
+            collectTaxes(20);
+        } else {
+            collectTaxes(35.0);
+        }
         performAutonomousSpending();
     }
 
@@ -31,10 +36,10 @@ public class Government {
     // Collect taxes
 
     // tax last tick income
-    void collectTaxes() {
+    void collectTaxes(double overrideRate) {
         taxRevenue = 0;
         for(Company co : country.companies) {
-            collectTaxableIncome(co.tax(corporateTax));
+            collectTaxableIncome(co.tax(overrideRate));
         }
         // System.out.println("Total tax revenue this quarter: " + taxRevenue);
         capital += taxRevenue;

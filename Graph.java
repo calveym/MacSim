@@ -61,7 +61,7 @@ public class Graph extends Canvas {
             xMin = compare;
         if(compare.y < yMin.y)
             yMin = compare;
-        System.out.println("Y min: " + yMin.y);
+        // System.out.println("Y min: " + yMin.y);
         recalculateAxes();
     }
 

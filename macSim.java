@@ -12,7 +12,7 @@ public class MacSim extends Applet implements ActionListener {
 
     // Simulation variables
     Country country;
-    long tick = 0;
+    long tick;
 
     public void init(){
         startSimulation();
@@ -23,11 +23,11 @@ public class MacSim extends Applet implements ActionListener {
         log("Starting Simulation...");
         log("");
         setLayout(new BorderLayout());
-        country = createCountry();
+        reset();
         graph = new Graph();
         add("Center", graph);
 
-        Timer timer = new Timer(2, this);
+        Timer timer = new Timer(0, this);
         timer.setInitialDelay(1000);
         timer.start();
     }
@@ -39,19 +39,30 @@ public class MacSim extends Applet implements ActionListener {
 
     void sim(Country country) {
         tick++; // advance simulation by 1 tick
-        p(".");
 
-        if(tick%100 == 0) {
+        if(tick == 2500) {
+            // log("\n\n\n");
+            log("Total GDP at start: " + country.startGdp);
+            log("Total GDP at finish: " + country.yGdp);
+            log("Total growth rate since start: " + country.getTotalGrowthRate());
+            log("Annualized growth since start: " + country.getAnnualizedGrowthRate());
+            log("   or: " + country.getAnnualizedGrowthRate() * 100 + "%");
+            log(" \n ");
+            reset();
+            return;
+        }
+        // p(".");
+        if(tick%100 == 0 && tick > 0) {
             // One year
-            log(" ");
-            log(" ");
-            log("Year: " + tick/100);
-            log("A year has passed");
-            log(" ");
+            // log(" ");
+            // log(" ");
+            // log("Year: " + tick/100);
+            // log("A year has passed");
+            // log(" ");
         } else if(tick%25 == 0 && tick > 25) {
             // One quarter
-            log(" ");
-            log("A quarter has passed");
+            // log(" ");
+            // log("A quarter has passed");
             graph.addPoint(new Coord((long)(tick/25), country.lqGdp));
             graph.repaint();
         }
@@ -59,8 +70,14 @@ public class MacSim extends Applet implements ActionListener {
         country.tick(tick);
     }
 
+    void reset() {
+        country = createCountry();
+        tick = 0;
+    }
+
     // simloop scheduler
     public void actionPerformed(ActionEvent e) {
+        if(tick > 2500) return;
         sim(country);
     }
 
