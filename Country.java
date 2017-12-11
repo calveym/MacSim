@@ -50,7 +50,7 @@ public class Country {
 
     // Constructors
 
-    public Country(int newPop, int numCo) {
+    public Country(int newPop, int numCo, double taxRate) {
         // Create components
 
         MacSim.log("Creating Country... ");
@@ -59,7 +59,7 @@ public class Country {
         MacSim.log("");
         rand = new Random();
         unemployed = newPop;
-        government = new Government(this);
+        government = new Government(this, taxRate);
         population = newPop;
         confidence = 0;
         generateUniqueCompany(30);

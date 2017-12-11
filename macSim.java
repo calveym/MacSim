@@ -23,7 +23,7 @@ public class MacSim extends Applet implements ActionListener {
         log("Starting Simulation...");
         log("");
         setLayout(new BorderLayout());
-        reset();
+        reset(20);
         graph = new Graph();
         add("Center", graph);
 
@@ -32,9 +32,9 @@ public class MacSim extends Applet implements ActionListener {
         timer.start();
     }
 
-    Country createCountry() {
+    Country createCountry(double rate) {
 
-        return new Country(15000, 500);
+        return new Country(15000, 500, rate);
     }
 
     void sim(Country country) {
@@ -48,7 +48,7 @@ public class MacSim extends Applet implements ActionListener {
             log("Annualized growth since start: " + country.getAnnualizedGrowthRate());
             log("   or: " + country.getAnnualizedGrowthRate() * 100 + "%");
             log(" \n ");
-            // reset();
+            reset(35);
             return;
         }
         // p(".");
@@ -70,8 +70,8 @@ public class MacSim extends Applet implements ActionListener {
         graph.repaint();
     }
 
-    void reset() {
-        country = createCountry();
+    void reset(double rate) {
+        country = createCountry(rate);
         tick = 0;
     }
 

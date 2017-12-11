@@ -18,16 +18,17 @@ public class Government {
     double corporateTax = 0;
 
 
-    public Government(Country c) {
+    public Government(Country c, double taxRate) {
         country = c;
+        corporateTax = taxRate;
     }
 
     public void tick(long tick) {
         if(tick <= 100)
         {
-            collectTaxes(0);
+            collectTaxes(corporateTax);
         } else {
-            collectTaxes(0);
+            collectTaxes(corporateTax);
         }
         performAutonomousSpending();
     }

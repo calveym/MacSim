@@ -41,7 +41,9 @@ This model will likely never be 'completed', since there is always more complexi
 Monetary policy functionality and the general implementation of a floating currency are planned for future, with aspects like money supply, inflation and securities exchanging to be simulated.
 
 - Citizen change
+
 Unemployment, employment demand, employment flux and much more will be simulated in future
 
 - Spending plans
+
 Government spending plans to invest in companies and citizens livelihoods
