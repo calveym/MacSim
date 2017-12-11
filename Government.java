@@ -15,7 +15,7 @@ public class Government {
 
 
     // Rates
-    double corporateTax = 35;
+    double corporateTax = 0;
 
 
     public Government(Country c) {
@@ -25,9 +25,9 @@ public class Government {
     public void tick(long tick) {
         if(tick <= 100)
         {
-            collectTaxes(20);
+            collectTaxes(0);
         } else {
-            collectTaxes(35.0);
+            collectTaxes(0);
         }
         performAutonomousSpending();
     }

@@ -48,7 +48,7 @@ public class MacSim extends Applet implements ActionListener {
             log("Annualized growth since start: " + country.getAnnualizedGrowthRate());
             log("   or: " + country.getAnnualizedGrowthRate() * 100 + "%");
             log(" \n ");
-            reset();
+            // reset();
             return;
         }
         // p(".");
@@ -63,11 +63,11 @@ public class MacSim extends Applet implements ActionListener {
             // One quarter
             // log(" ");
             // log("A quarter has passed");
-            graph.addPoint(new Coord((long)(tick/25), country.lqGdp));
-            graph.repaint();
         }
-
         country.tick(tick);
+
+        graph.addPoint(new Coord((long)(tick), country.gdp));
+        graph.repaint();
     }
 
     void reset() {

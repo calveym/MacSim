@@ -20,11 +20,11 @@ public class Country {
 
 
     // Economy
+    BusinessCycle cycle;
     public ArrayList<Company> companies = new ArrayList<Company>();
     Company mainCo;
     int coId = 0;
     double inflation;
-    int businessCycle = 0; // 0 - 2
     int quarter;
     int year;
     long startGdp; // gdp at start
@@ -71,6 +71,7 @@ public class Country {
 
     public void tick(long tick) {
         // Update sentiment based on last tick metrics
+        updateBusinessCycle();
         updateSentiment();
 
         // Run simulation
@@ -148,22 +149,24 @@ public class Country {
 
     void updateSentiment() {
         double oldConfidence = confidence;
-        businessCycle++;
-        if(businessCycle > 12)
-            businessCycle = 0;
-        confidence = 6.5;
-        if(businessCycle > 10)
-            confidence -= 15.4;
+        confidence = 0;
+        confidence += cycle.multiplier();
         confidence += volatility();
         confidence += shock();
         confidenceEarningsMultiplier = (confidence / 100.0);
         // confidenceEarningsMultiplier = 1.00000000000001;
     }
 
+    void updateBusinessCycle() {
+        if(cycle == null || cycle.complete())
+            cycle = new BusinessCycle((rand.nextInt(2) + 1) * 150, 4);
+        cycle.tick();
+    }
+
     double volatility() {
         double adjuster = rand.nextDouble();
-        adjuster *= 6;
-        adjuster -= 3;
+        adjuster *= 4;
+        adjuster -= 2;
         return adjuster;
     }
 
@@ -171,15 +174,15 @@ public class Country {
         double shock = 0.0;
         int minor = rand.nextInt(10);
         int recession = rand.nextInt(100);
-        int crisis = rand.nextInt(1000);
+        int crisis = rand.nextInt(500);
         if(minor == 1) {
-            shock += (rand.nextDouble() * 6) - 3;
+            shock += (rand.nextDouble() * 3) - 1.5;
             // log("Happened 1");
         } if(recession == 1) {
-            shock += (rand.nextDouble() * 14.0) - 7;
+            shock += (rand.nextDouble() * 5) - 2.5;
             // log("Happened 2");
         } if(crisis == 1) {
-            shock += (rand.nextDouble() * 25) - 14;
+            shock += (rand.nextDouble() * 12) - 6;
             // log("Happened 3");
         }
         return shock;

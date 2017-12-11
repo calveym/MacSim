@@ -155,7 +155,7 @@ public class Company {
         reach = updateReach();
         multiplier = updateMultiplier();
         cumulativeConfidence *= (1 + country.confidenceEarningsMultiplier * 0.001);
-        return (long)(reach * multiplier * cumulativeConfidence * 0.027 * (country.rand.nextDouble()*1.5) +0.6);
+        return (long)(reach * multiplier * cumulativeConfidence * 0.027);
     }
 
     long calculateExpenses() {
