@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Country {
 
-    boolean suppress = true;
+    boolean suppress = false;
 
     // Util
     Random rand;
@@ -98,8 +98,6 @@ public class Country {
             lqGdp = qGdp;
             if(tick == 25)
                 startGdp = qGdp;
-            quarterlyReport();
-            qGdp = 0;
         }
     }
 
@@ -119,6 +117,7 @@ public class Country {
         else if(quarter == 3)
             q4 = qGdp;
         quarter++;
+        qGdp = 0;
         if(quarter > 3)
             quarter = 0;
     }
@@ -137,14 +136,15 @@ public class Country {
         return companies.size();
     }
 
-    void quarterlyReport() {
-        if(suppress) return;
-        log(" ");
-        log("Current confidence: " + confidence);
-        log("Confidence earnings multiplier: " + confidenceEarningsMultiplier);
-        log("Quarterly country status report: ");
-        log("GDP in the last quarter: " + qGdp);
-        log("GDP change since last quarter: " + lqdGdp);
+    public void quarterlyReport() {
+        if(!suppress) {
+            log(" ");
+            log("Current confidence: " + confidence);
+            log("Confidence earnings multiplier: " + confidenceEarningsMultiplier);
+            log("Quarterly country status report: ");
+            log("GDP in the last quarter: " + qGdp);
+            log("GDP change since last quarter: " + lqdGdp);
+        }
     }
 
     void updateSentiment() {
@@ -198,7 +198,7 @@ public class Country {
         gdp *= 100;
 
         if(oldGdp != 0) {
-            dGdp = (gdp / oldGdp) - (double)1.0;
+            dGdp = (gdp / (double)oldGdp) - (double)1.0;
         } else {
             dGdp = 0;
         }

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Company {
 
-    boolean suppress = true;
+    boolean suppress = false;
 
 
     Country country; // owner country

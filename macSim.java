@@ -5,6 +5,17 @@ import javax.swing.Timer;
 
 public class MacSim extends Applet implements ActionListener {
 
+    int SUPPRESS = 2; // Debugging system controller. Has 5 states
+                     // for 5 levels of Debugging detail and cycle style.
+                     // 1: Companies and all of the below
+                     // 2: Quarterly reviews
+                     // 3: Yearly reviews and errors/ messages
+                     // 4: Cycle completions
+                     // 5: Quiet mode
+
+
+
+
     // App variables
     InputManager input;
     SimCanvas c;
@@ -27,7 +38,7 @@ public class MacSim extends Applet implements ActionListener {
         graph = new Graph();
         add("Center", graph);
 
-        Timer timer = new Timer(0, this);
+        Timer timer = new Timer(50, this);
         timer.setInitialDelay(1000);
         timer.start();
     }
@@ -40,34 +51,57 @@ public class MacSim extends Applet implements ActionListener {
     void sim(Country country) {
         tick++; // advance simulation by 1 tick
 
+        logTick();
         if(tick == 2500) {
-            // log("\n\n\n");
-            log("Total GDP at start: " + country.startGdp);
-            log("Total GDP at finish: " + country.yGdp);
-            log("Total growth rate since start: " + country.getTotalGrowthRate());
-            log("Annualized growth since start: " + country.getAnnualizedGrowthRate());
-            log("   or: " + country.getAnnualizedGrowthRate() * 100 + "%");
-            log(" \n ");
+            logCycle();
             reset(35);
             return;
         }
-        // p(".");
         if(tick%100 == 0 && tick > 0) {
             // One year
-            // log(" ");
-            // log(" ");
-            // log("Year: " + tick/100);
-            // log("A year has passed");
-            // log(" ");
+            logYear();
         } else if(tick%25 == 0 && tick > 25) {
             // One quarter
-            // log(" ");
-            // log("A quarter has passed");
+            logQuarter();
         }
         country.tick(tick);
 
         graph.addPoint(new Coord((long)(tick), country.gdp));
         graph.repaint();
+    }
+
+    void logCycle() {
+        if(SUPPRESS > 4) return;
+        // log("\n\n\n");
+        log("Total GDP at start: " + country.startGdp);
+        log("Total GDP at finish: " + country.yGdp);
+        log("Total growth rate since start: " + country.getTotalGrowthRate());
+        log("Annualized growth since start: " + country.getAnnualizedGrowthRate());
+        log("   or: " + country.getAnnualizedGrowthRate() * 100 + "%");
+        log(" \n ");
+    }
+
+    void logYear() {
+        if(SUPPRESS > 3) return;
+        log(" ");
+        log(" ");
+        log("A year has passed");
+        log("Year: " + tick/100);
+        log(" ");
+    }
+
+    void logQuarter() {
+        if(SUPPRESS > 2) return;
+        log(" ");
+        log("A quarter has passed");
+        country.quarterlyReport();
+    }
+
+    void logTick() {
+        if(SUPPRESS > 3) return;
+        p(".");
+        if(SUPPRESS > 1) return;
+        p("GDP change from last tick: " + 100 * country.dGdp);
     }
 
     void reset(double rate) {
