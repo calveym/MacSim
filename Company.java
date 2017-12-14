@@ -66,7 +66,7 @@ public class Company {
             // One quarter
             // investCapital();
 
-            if(id == 0)
+            if(id == 0 && country.SUPPRESS == 1)
                 quarterlyReport();
             lqRevenue = 0;
             lqExpenses = 0;
@@ -89,7 +89,6 @@ public class Company {
     }
 
     void quarterlyReport() {
-        if(country.SUPPRESS > 2) return;
         log(" ");
         log("Quarterly report: " + id);
         log("Assets: " + assets);

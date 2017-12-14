@@ -20,13 +20,11 @@ public class BusinessCycle extends Cycle {
         rand = new Random();
         this.length = length;
         tick = 0;
-        double switchDelta = rand.nextDouble();
-        if(switchDelta < 0.2) switchDelta += 0.2 - switchDelta;
+        double switchDelta = 0.7;
         switchToRecession = (int)(switchDelta * length);
         // log("Length of cycle: " + length);
         // log("Switch to recession: " + switchToRecession);
-        crashExtremity = rand.nextDouble() * 32;
-        crashExtremity += 8;
+        crashExtremity = 8 + rand.nextDouble() * 32;
         // crashExtremity = rand.nextDouble() * (extremity + 1) * 4;
         growthExtremity = rand.nextDouble() * (extremity + 1) * 1.5;
     }

@@ -13,6 +13,9 @@ public class MacSim extends Applet implements ActionListener {
                      // 4: Cycle completions
                      // 5: Quiet mode
 
+    int simLength = 10000; // how long the simulation lasts for
+    boolean restart = false;
+
 
 
 
@@ -47,19 +50,13 @@ public class MacSim extends Applet implements ActionListener {
 
     Country createCountry(double rate) {
 
-        return new Country(30000, 1000, rate, SUPPRESS);
+        return new Country(15000, 500, rate, SUPPRESS);
     }
 
     void sim(Country country) {
         tick++; // advance simulation by 1 tick
-
         updatePreController();
         logTick();
-        if(tick == 2500) {
-            logCycle();
-            //reset(20);
-            return;
-        }
         if(tick%100 == 0 && tick > 0) {
             // One year
             logYear();
@@ -81,7 +78,7 @@ public class MacSim extends Applet implements ActionListener {
         log("Total GDP at finish: " + country.yGdp);
         log("Total growth rate since start: " + country.getTotalGrowthRate());
         log("Annualized growth since start: " + country.getAnnualizedGrowthRate());
-        log("   or: " + country.getAnnualizedGrowthRate() * 100 + "%");
+        log("   or: " + (float)(int)(country.getAnnualizedGrowthRate() * 10000)/100.0 + "%");
         log(" \n ");
     }
 
@@ -119,15 +116,18 @@ public class MacSim extends Applet implements ActionListener {
     void reset(double rate) {
         country = createCountry(rate);
         tick = 0;
-        TaxTicker ticker = new TaxTicker(this, 20, 20, tick, 100, 0);
         preController = new TickerController();
         postController = new TickerController();
-        ticker.register(preController);
     }
 
     // simloop scheduler
     public void actionPerformed(ActionEvent e) {
-        if(tick > 2500) return;
+        if(tick > simLength) {
+            logCycle();
+            if(restart)
+            reset(20);
+            return;
+        }
         sim(country);
     }
 

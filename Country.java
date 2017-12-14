@@ -93,12 +93,14 @@ public class Country {
         }
 
         if(tick%25==0) {
-            updateQuarterlyGdp();
             if(lqGdp != 0)
                 lqdGdp = qGdp - lqGdp;
             lqGdp = qGdp;
-            if(tick == 25)
-                startGdp = qGdp;
+            if(tick == 50)
+            {
+                startGdp = lqGdp;
+            }
+            updateQuarterlyGdp();
         }
     }
 
@@ -150,9 +152,8 @@ public class Country {
 
     void updateSentiment(long tick) {
         double oldConfidence = confidence;
-        confidence = 2;
+        confidence = 2 + yearMultiplier(tick)/ 2;
         confidence += cycle.multiplier();
-        confidence += yearMultiplier(tick);
         confidence += volatility();
         confidence += shock();
         confidenceEarningsMultiplier = (confidence / 100.0);
@@ -169,7 +170,7 @@ public class Country {
 
     void updateBusinessCycle() {
         if(cycle == null || cycle.complete())
-            cycle = new BusinessCycle((rand.nextInt(2) + 1) * 150, 3);
+            cycle = new BusinessCycle((rand.nextInt(2) + 1) * 150, 2);
         cycle.tick();
     }
 

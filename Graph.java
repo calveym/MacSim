@@ -2,6 +2,11 @@ import java.util.*;
 import java.awt.*;
 
 public class Graph extends Canvas {
+
+    Image offscreen;
+    Coord offscreensize;
+    Graphics g2;
+
     Vector<Coord> points;
     Vector<LineSegment> segments;
     Coord size; // graph pixel dimensions
@@ -36,20 +41,31 @@ public class Graph extends Canvas {
     }
 
     public void update(Graphics g) {
-
         // regenerate needed info
         generateSegments();
         recalculateAxes();
 
-        // erase old contents:
-        g.setColor(getBackground());
-        g.fillRect(0, 0, (int)size.x, (int)size.y);
-
-        // draw
-        g.setColor(Color.black);
-        for(LineSegment seg : segments) {
-            seg.drawSegment(g, this);
+        if ((offscreen == null)
+            || (size.x != offscreensize.x)
+            || (size.y != offscreensize.y)) {
+            offscreen = createImage((int)size.x, (int)size.y);
+            offscreensize = size;
+            g2 = offscreen.getGraphics();
+            g2.setFont(getFont());
         }
+
+        // erase old contents:
+        g2.setColor(getBackground());
+        g2.fillRect(0, 0, (int)size.x, (int)size.y);
+
+        // now, draw as usual, but use g2 instead of g
+        g2.setColor(Color.black);
+        for(LineSegment seg : segments) {
+            seg.drawSegment(g2, this);
+        }
+
+        // finally, draw the image on top of the old one
+        g.drawImage(offscreen, 0, 0, null);
     }
 
     void recalculateMaxMin(Coord compare) {
