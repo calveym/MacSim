@@ -205,7 +205,6 @@ public class Country {
             gdp += co.profit;
         }
         qGdp += gdp;
-        gdp *= 100;
 
         if(oldGdp != 0) {
             dGdp = (gdp / (double)oldGdp) - (double)1.0;
