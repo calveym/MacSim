@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Country {
 
-    boolean suppress = false;
+    int SUPPRESS;
 
     // Util
     Random rand;
@@ -50,13 +50,14 @@ public class Country {
 
     // Constructors
 
-    public Country(int newPop, int numCo, double taxRate) {
+    public Country(int newPop, int numCo, double taxRate, int suppressionLevel) {
         // Create components
 
         MacSim.log("Creating Country... ");
         MacSim.log("Population: " + Integer.toString(newPop));
         MacSim.log(Integer.toString(numCo) + " Companies active in economy");
         MacSim.log("");
+        SUPPRESS = suppressionLevel;
         rand = new Random();
         unemployed = newPop;
         government = new Government(this, taxRate);
@@ -72,7 +73,7 @@ public class Country {
     public void tick(long tick) {
         // Update sentiment based on last tick metrics
         updateBusinessCycle();
-        updateSentiment();
+        updateSentiment(tick);
 
         // Run simulation
         for(Company co : companies) {
@@ -137,7 +138,7 @@ public class Country {
     }
 
     public void quarterlyReport() {
-        if(!suppress) {
+        if(SUPPRESS > 3) {
             log(" ");
             log("Current confidence: " + confidence);
             log("Confidence earnings multiplier: " + confidenceEarningsMultiplier);
@@ -147,14 +148,23 @@ public class Country {
         }
     }
 
-    void updateSentiment() {
+    void updateSentiment(long tick) {
         double oldConfidence = confidence;
         confidence = 2;
         confidence += cycle.multiplier();
+        confidence += yearMultiplier(tick);
         confidence += volatility();
         confidence += shock();
         confidenceEarningsMultiplier = (confidence / 100.0);
         // confidenceEarningsMultiplier = 1.00000000000001;
+    }
+
+    double yearMultiplier(long tick) {
+        int tOY = (int)(tick % 100); // time of year
+        double multiplier = (tOY + 0.2) * 0.1;
+        if(multiplier > 0.25)
+            multiplier -= 0.3;
+        return multiplier;
     }
 
     void updateBusinessCycle() {
@@ -165,18 +175,18 @@ public class Country {
 
     double volatility() {
         double adjuster = rand.nextDouble();
-        adjuster *= 4;
-        adjuster -= 2;
+        adjuster *= 2;
+        adjuster -= 1;
         return adjuster;
     }
 
     double shock() {
         double shock = 0.0;
         int minor = rand.nextInt(10);
-        int recession = rand.nextInt(100);
+        int recession = rand.nextInt(200);
         int crisis = rand.nextInt(500);
         if(minor == 1) {
-            shock += (rand.nextDouble() * 3) - 1.5;
+            shock += (rand.nextDouble() * 1) - 0.5;
             // log("Happened 1");
         } if(recession == 1) {
             shock += (rand.nextDouble() * 5) - 2.5;

@@ -1,17 +1,23 @@
+import java.util.*;
+
 public class TickerController {
     Vector<Ticker> tickers;
+
+    public TickerController() {
+        tickers = new Vector<Ticker>();
+    }
 
     public void registerTicker(Ticker ticker) {
         tickers.add(ticker);
     }
 
-    public void tick () {
-        updateTickers();
+    public void tick (long newTick) {
+        updateTickers(newTick);
     }
 
-    void updateTickers() {
+    void updateTickers(long newTick) {
         for(Ticker t : tickers) {
-            t.update()
+            t.update(newTick);
         }
     }
 }

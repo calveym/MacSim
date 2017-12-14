@@ -1,19 +1,26 @@
 public abstract class Ticker {
-    int startTime, length, startDelay;
+    long startTime, length, startDelay;
 
-    public Ticker(int tick, int len, int sDelay) {
+    public Ticker(long tick, long len, long sDelay) {
         startTime = tick;
         length = len;
         startDelay = sDelay;
     }
 
-    public void register(TickController controller) {
+    public void register(TickerController controller) {
         controller.registerTicker(this);
+        preAction();
     }
 
-    public void update(int newTick) {
-        if()
+    public void update(long newTick) {
+        duringAction();
+        if(newTick == length + startTime) {
+            System.out.println("Ticker complete");
+            postAction();
+        }
     }
 
-    public abstract void CompleteAction();
+    public abstract void preAction();
+    public abstract void duringAction(); // happens each tick while it runs
+    public abstract void postAction(); // happens once after it completes
 }

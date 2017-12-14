@@ -18,6 +18,8 @@ public class MacSim extends Applet implements ActionListener {
 
     // App variables
     InputManager input;
+    TickerController preController;
+    TickerController postController;
     SimCanvas c;
     Graph graph;
 
@@ -38,23 +40,24 @@ public class MacSim extends Applet implements ActionListener {
         graph = new Graph();
         add("Center", graph);
 
-        Timer timer = new Timer(50, this);
+        Timer timer = new Timer(0, this);
         timer.setInitialDelay(1000);
         timer.start();
     }
 
     Country createCountry(double rate) {
 
-        return new Country(15000, 500, rate);
+        return new Country(30000, 1000, rate, SUPPRESS);
     }
 
     void sim(Country country) {
         tick++; // advance simulation by 1 tick
 
+        updatePreController();
         logTick();
         if(tick == 2500) {
             logCycle();
-            reset(35);
+            //reset(20);
             return;
         }
         if(tick%100 == 0 && tick > 0) {
@@ -66,6 +69,7 @@ public class MacSim extends Applet implements ActionListener {
         }
         country.tick(tick);
 
+        updatePostController();
         graph.addPoint(new Coord((long)(tick), country.gdp));
         graph.repaint();
     }
@@ -104,9 +108,21 @@ public class MacSim extends Applet implements ActionListener {
         p("GDP change from last tick: " + 100 * country.dGdp);
     }
 
+    void updatePreController() {
+        preController.tick(tick);
+    }
+
+    void updatePostController() {
+        postController.tick(tick);
+    }
+
     void reset(double rate) {
         country = createCountry(rate);
         tick = 0;
+        TaxTicker ticker = new TaxTicker(this, 20, 20, tick, 100, 0);
+        preController = new TickerController();
+        postController = new TickerController();
+        ticker.register(preController);
     }
 
     // simloop scheduler

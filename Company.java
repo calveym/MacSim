@@ -2,9 +2,6 @@ import java.util.*;
 
 public class Company {
 
-    boolean suppress = false;
-
-
     Country country; // owner country
 
     int id; // assigned company id
@@ -92,7 +89,7 @@ public class Company {
     }
 
     void quarterlyReport() {
-        if(suppress) return;
+        if(country.SUPPRESS > 2) return;
         log(" ");
         log("Quarterly report: " + id);
         log("Assets: " + assets);
