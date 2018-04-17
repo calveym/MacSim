@@ -17,16 +17,16 @@ public class Economy {
 	int year;
 
 	// Business Cycle
-	BusinessCycle cycle
+	BusinessCycle cycle;
 	
 	// Companies
 	public ArrayList<Company> companies = new ArrayList<Company>();
-
+	int coId = 0;
 
 	// Constructors
 	public Economy (Country country, int numCo, double taxRate, int suppressionLevel) {
 	
-		MacSim.log("Creating Economy... ");
+		MacSim.log(4, "Creating Economy... ");
 		self.country = country;
 		spirits = 0; 							// neutral spirits
 	}
@@ -36,6 +36,14 @@ public class Economy {
 	public void tick(long tick) {
 		updateCycle(tick);
 		updateSentiment(tick);
+
+		if(tick % 25 == 0) {
+			updateQuarter();
+		}
+
+		if(tick % 100 == 0) {
+			updateYear();
+		}
 	}
 
  	void updateCycle(long tick) {
@@ -48,10 +56,34 @@ public class Economy {
 
 	}
 
+	void updateYear() {
+
+	}
+
+	void updateQuarter() {
+
+	}
+
 
 	// Generation
 	void generateCompanies(int num) {
 		int each = (int)(country.pop.unemployed / num);
+		int remainder = country.pop.unemployed % num;
+		MacSim.log(3, "Generating " + num + " companies");
+
+		for(int i = 0; i < num; i++) {
+			if(i < remainder) {
+				generateCompany(each + remainder);
+			} else {
+				generateCompany(each);
+			}
+		}
+	}
+
+	void generateCompany(int hire) {
+		Company newCo = new Company(this, hire, coId);
+		companies.add(newCo);
+		coId++;
 	}
 
 }

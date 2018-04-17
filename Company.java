@@ -66,7 +66,7 @@ public class Company {
             // One quarter
             // investCapital();
 
-            if(id == 0 && country.SUPPRESS == 1)
+            if(id == 0 && MacSim.SUPPRESS == 1)
                 quarterlyReport();
             lqRevenue = 0;
             lqExpenses = 0;
@@ -89,15 +89,15 @@ public class Company {
     }
 
     void quarterlyReport() {
-        log(" ");
-        log("Quarterly report: " + id);
-        log("Assets: " + assets);
-        log("Capital: " + capital);
-        log("Employees: " + employees);
-        log("Profit: " + lqProfit);
-        p("   Revenue: " + lqRevenue);
-        p("   Expenses: " + lqExpenses);
-        log(" ");
+        MacSim.log(2, " ");
+        MacSim.log(2, "Quarterly report: " + id);
+        MacSim.log(2, "Assets: " + assets);
+        MacSim.log(2, "Capital: " + capital);
+        MacSim.log(2, "Employees: " + employees);
+        MacSim.log(2, "Profit: " + lqProfit);
+        MacSim.p(2, "   Revenue: " + lqRevenue);
+        MacSim.p(2, "   Expenses: " + lqExpenses);
+        MacSim.log(2, " ");
     }
 
     long tax(double amount) {
@@ -165,7 +165,7 @@ public class Company {
     long assetRevenue() {
         long assetRevenue = (long)(assets * interest);
         if(id==0)
-            log("Asset revenue: " + assetRevenue);
+            MacSim.log(1, "Asset revenue: " + assetRevenue);
         return assetRevenue;
     }
 
@@ -182,13 +182,5 @@ public class Company {
 
     double updateMultiplier() {
         return (education + 1) / 2.0;
-    }
-
-    public static void log(String s) {
-        System.out.println(s);
-    }
-
-    public static void p(String s) {
-        System.out.print(s);
     }
 }

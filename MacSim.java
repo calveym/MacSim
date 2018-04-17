@@ -7,7 +7,7 @@ public class MacSim {
 
     static int SUPPRESS = 2; // Debugging system controller. Has 5 states
                      // for 5 levels of Debugging detail and cycle style.
-                     // 1: Companies and all of the below
+                     // 1: Verbose
                      // 2: Quarterly reviews
                      // 3: Yearly reviews and errors/ messages
                      // 4: Cycle completions
@@ -30,7 +30,7 @@ public class MacSim {
 
     public static void main(String[] args) throws InterruptedException {
         if(args.length == 1)
-			SUPPRESS = args[0];
+			SUPPRESS = (int)args[0];
 		MacSim sim = new MacSim();
 		sim.startSimulation();
 	}
@@ -128,11 +128,13 @@ public class MacSim {
     }
 
     public static void log(int logLevel, String s) {
-        System.out.println(s);
+        if(logLevel < SUPPRESS) return;
+		System.out.println(s);
     }
 
-    public static void p(String s) {
-        System.out.print(s);
+    public static void p(int logLevel, String s) {
+        if(logLevel < SUPPRESS) return;
+		System.out.print(s);
     }
 }
 

@@ -7,7 +7,7 @@ public class Country {
 	PopulationManager pop;
 
 	public Country(int newPop, int numCo, double taxRate, int suppressionLevel) {
-		MacSim.log("Creating country... ");
+		MacSim.log(5, "Creating country... ");
 
 		pop = new PopulationManager(newPop);
 		government = new Government();
