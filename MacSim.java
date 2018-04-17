@@ -3,9 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.Timer;
 
-public class MacSim extends Applet implements ActionListener {
+public class MacSim {
 
-    int SUPPRESS = 2; // Debugging system controller. Has 5 states
+    static int SUPPRESS = 2; // Debugging system controller. Has 5 states
                      // for 5 levels of Debugging detail and cycle style.
                      // 1: Companies and all of the below
                      // 2: Quarterly reviews
@@ -23,33 +23,31 @@ public class MacSim extends Applet implements ActionListener {
     InputManager input;
     TickerController preController;
     TickerController postController;
-    SimCanvas c;
-    Graph graph;
 
     // Simulation variables
     Country country;
     long tick;
 
-    public void init(){
-        startSimulation();
-    }
+    public static void main(String[] args) throws InterruptedException {
+        if(args.length == 1)
+			SUPPRESS = args[0];
+		MacSim sim = new MacSim();
+		sim.startSimulation();
+	}
 
-    public void startSimulation() {
+    public void startSimulation() throws InterruptedException {
         // Setup instant vars
         log("Starting Simulation...");
         log("");
-        setLayout(new BorderLayout());
         reset(20);
-        graph = new Graph();
-        add("Center", graph);
 
-        Timer timer = new Timer(0, this);
-        timer.setInitialDelay(1000);
-        timer.start();
-    }
+    	while(tick < simLength) {
+			Thread.sleep(20);
+			sim();
+		}
+	}
 
     Country createCountry(double rate) {
-
         return new Country(15000, 500, rate, SUPPRESS);
     }
 
@@ -67,9 +65,7 @@ public class MacSim extends Applet implements ActionListener {
         country.tick(tick);
 
         updatePostController();
-        graph.addPoint(new Coord((long)(tick), country.gdp));
-        graph.repaint();
-    }
+	}
 
     void logCycle() {
         if(SUPPRESS > 4) return;
@@ -121,7 +117,7 @@ public class MacSim extends Applet implements ActionListener {
     }
 
     // simloop scheduler
-    public void actionPerformed(ActionEvent e) {
+    public void sim() {
         if(tick > simLength) {
             logCycle();
             if(restart)
@@ -131,7 +127,7 @@ public class MacSim extends Applet implements ActionListener {
         sim(country);
     }
 
-    public static void log(String s) {
+    public static void log(int logLevel, String s) {
         System.out.println(s);
     }
 
@@ -140,70 +136,3 @@ public class MacSim extends Applet implements ActionListener {
     }
 }
 
-class SimCanvas extends Canvas {
-    // References for drawing
-
-        Dimension size;
-        MacSim parent;
-        Image offscreen;
-        Dimension offscreensize;
-        Graphics g2;
-
-        // Constructor
-        public SimCanvas(MacSim m){
-            parent = m;
-            size = new Dimension(600, 400);
-        }
-
-        // Redraw canvas handling
-        public void paint(Graphics g) {
-            update(g);
-        }
-
-        // Redraw logic
-        public void update(Graphics g) {
-            // initially (or when size changes) create new image
-            if ((offscreen == null)
-                || (size.width != offscreensize.width)
-                || (size.height != offscreensize.height)) {
-                offscreen = createImage(size.width, size.height);
-                offscreensize = size;
-                g2 = offscreen.getGraphics();
-                g2.setFont(getFont());
-            }
-
-            // erase old contents:
-            g2.setColor(getBackground());
-            g2.fillRect(0, 0, size.width, size.height);
-
-            // now, draw as usual, but use g2 instead of g
-            // draw stuff here boi
-
-            // finally, draw the image on top of the old one
-            g.drawImage(offscreen, 0, 0, null);
-        }
-}
-
-class InputManager extends KeyAdapter {
-
-    // Key array
-    boolean[] keys = new boolean[65536];
-
-    // returns key array
-    public boolean[] getInput() {
-        boolean[] temp = keys;
-        resetKeys();
-        return temp;
-    }
-
-    // clears key array
-    void resetKeys() {
-        keys = new boolean[65536];
-    }
-
-    // called on keyPressed event run
-    public void keyPressed(KeyEvent e) { // handles keypresses
-        int keyCode = e.getKeyCode(); // gets keycode
-        keys[keyCode] = true;
-    }
-}

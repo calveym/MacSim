@@ -170,9 +170,8 @@ public class Company {
     }
 
     void hire(int numToHire) {
-        country.unemployed -= numToHire;
-        country.employed += numToHire;
-        employees += numToHire;
+        country.pop.hire(numToHire);
+		employees += numToHire;
     }
 
     int updateReach() {
