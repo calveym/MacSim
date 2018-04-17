@@ -37,8 +37,8 @@ public class MacSim {
 
     public void startSimulation() throws InterruptedException {
         // Setup instant vars
-        log("Starting Simulation...");
-        log("");
+        log(4, "Starting Simulation...");
+        log(4, "");
         reset(20);
 
     	while(tick < simLength) {
@@ -68,37 +68,32 @@ public class MacSim {
 	}
 
     void logCycle() {
-        if(SUPPRESS > 4) return;
         // log("\n\n\n");
-        log("Total GDP at start: " + country.startGdp);
-        log("Total GDP at finish: " + country.yGdp);
-        log("Total growth rate since start: " + country.getTotalGrowthRate());
-        log("Annualized growth since start: " + country.getAnnualizedGrowthRate());
-        log("   or: " + (float)(int)(country.getAnnualizedGrowthRate() * 10000)/100.0 + "%");
-        log(" \n ");
+        log(3, "Total GDP at start: " + country.startGdp);
+        log(3, "Total GDP at finish: " + country.yGdp);
+        log(3, "Total growth rate since start: " + country.getTotalGrowthRate());
+        log(3, "Annualized growth since start: " + country.getAnnualizedGrowthRate());
+        log(3, "   or: " + (float)(int)(country.getAnnualizedGrowthRate() * 10000)/100.0 + "%");
+        log(3, " \n ");
     }
 
     void logYear() {
-        if(SUPPRESS > 3) return;
-        log(" ");
-        log(" ");
-        log("A year has passed");
-        log("Year: " + tick/100);
-        log(" ");
+        log(4, " ");
+        log(4, " ");
+        log(4, "A year has passed");
+        log(4, "Year: " + tick/100);
+        log(4, " ");
     }
 
     void logQuarter() {
-        if(SUPPRESS > 2) return;
-        log(" ");
-        log("A quarter has passed");
+        log(2, " ");
+        log(2, "A quarter has passed");
         country.quarterlyReport();
     }
 
     void logTick() {
-        if(SUPPRESS > 3) return;
-        p(".");
-        if(SUPPRESS > 1) return;
-        p("GDP change from last tick: " + 100 * country.dGdp);
+        p(3, ".");
+        p(2, "GDP change from last tick: " + 100 * country.dGdp);
     }
 
     void updatePreController() {

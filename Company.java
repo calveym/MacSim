@@ -13,7 +13,7 @@ public class Company {
     int employees; // number of employees
     double multiplier; // multiplier calculated from education    1/2 < x < 3
     double cumulativeConfidence = 1;
-    int salary;
+    int wage;
 
 
     // Money
@@ -56,7 +56,7 @@ public class Company {
         employees = numEmp;
         education = 2;
         technology = 20;
-        salary = 15000;
+        wage = 15000;
     }
 
     public void tick(long tick) {
@@ -155,7 +155,7 @@ public class Company {
     }
 
     long calculateExpenses() {
-        return (long)(((employees * salary * multiplier) + chargeForAssets()) * 0.01 * (country.rand.nextDouble() * 0.2 + 0.9) * cumulativeConfidence);
+        return (long)(((employees * wage * multiplier) + chargeForAssets()) * 0.01 * (country.rand.nextDouble() * 0.2 + 0.9) * cumulativeConfidence);
     }
 
     long chargeForAssets() {

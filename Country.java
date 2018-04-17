@@ -9,9 +9,9 @@ public class Country {
 	public Country(int newPop, int numCo, double taxRate, int suppressionLevel) {
 		MacSim.log(5, "Creating country... ");
 
-		pop = new PopulationManager(newPop);
-		government = new Government();
-		economy = new Economy(numCo, taxRate, suppressionLevel);
+		pop = new PopulationManager(this, newPop);
+		government = new Government(this, taxRate);
+		economy = new Economy(this, numCo, taxRate, suppressionLevel);
 	}
 
 	public void tick(long tick) {
