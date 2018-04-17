@@ -3,6 +3,7 @@ import java.util.*;
 public class Company {
 
     Country country; // owner country
+	Economy economy;
 
     int id; // assigned company id
 
@@ -41,9 +42,10 @@ public class Company {
     int stocksOutstanding;
     double stockPrice;
 
-    public Company(Country newCountry, int numEmp, int newId) {
+    public Company(Economy eco, int numEmp, int newId) {
         id = newId;
-        country = newCountry;
+		economy = eco;
+        country = eco.country;
         stocksOutstanding = 100;
         stockPrice = 1;
 
@@ -123,7 +125,7 @@ public class Company {
     }
 
     void majorInvestment() {
-        if(!country.availableUnemployed(20)) {
+        if(country.pop.unemployed > 20) {
             hire(20);
             convertCapital(5000000);
         } else {
@@ -132,7 +134,7 @@ public class Company {
     }
 
     void minorInvestment() {
-        if(country.availableUnemployed(5)) {
+        if(country.pop.unemployed > 5) {
             hire(5);
             convertCapital(175000);
         } else {
@@ -150,12 +152,11 @@ public class Company {
         // reach
         reach = updateReach();
         multiplier = updateMultiplier();
-        cumulativeConfidence *= (1 + country.confidenceEarningsMultiplier * 0.001);
-        return (long)(reach * multiplier * cumulativeConfidence * 0.027);
+        return (long)(reach * multiplier * 0.027);
     }
 
     long calculateExpenses() {
-        return (long)(((employees * wage * multiplier) + chargeForAssets()) * 0.01 * (country.rand.nextDouble() * 0.2 + 0.9) * cumulativeConfidence);
+        return (long)(((employees * wage * multiplier) + chargeForAssets()) * 0.01 * (MacSim.rand.nextDouble() * 0.2 + 0.9));
     }
 
     long chargeForAssets() {
@@ -177,7 +178,7 @@ public class Company {
     int updateReach() {
         techVal = 1.0 - (technology * 0.002 + 0.01);
         double empTech = (employees) / techVal;
-        return (int)(country.population * (int)empTech);
+        return (int)(country.pop.totalPop * (int)empTech);
     }
 
     double updateMultiplier() {

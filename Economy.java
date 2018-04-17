@@ -2,9 +2,6 @@ import java.util.*;
 
 public class Economy {
 
-	Random rand;
-
-
 	// Pointers
 	Country country;
 
@@ -24,10 +21,9 @@ public class Economy {
 	int coId = 0;
 
 	// Constructors
-	public Economy (Country country, int numCo, double taxRate, int suppressionLevel) {
-	
+	public Economy (Country newCountry, int numCo, double taxRate, int suppressionLevel) {
 		MacSim.log(4, "Creating Economy... ");
-		self.country = country;
+		country = country;
 		spirits = 0; 							// neutral spirits
 	}
 
@@ -48,7 +44,7 @@ public class Economy {
 
  	void updateCycle(long tick) {
 		if(cycle == null || cycle.complete())
-			cycle = new BusinessCycle((rand.nextint(2) + 1) * 150, 2);
+			cycle = new BusinessCycle((MacSim.rand.nextInt(2) + 1) * 150, 2);
 		cycle.tick();
 	}
 

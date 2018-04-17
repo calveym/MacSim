@@ -1,7 +1,4 @@
-import java.applet.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.Timer;
+import java.util.*;
 
 public class MacSim {
 
@@ -13,11 +10,10 @@ public class MacSim {
                      // 4: Cycle completions
                      // 5: Quiet mode
 
-    int simLength = 10000; // how long the simulation lasts for
+    static Random rand;
+
+	int simLength = 10000; // how long the simulation lasts for
     boolean restart = false;
-
-
-
 
     // App variables
     InputManager input;
@@ -29,9 +25,8 @@ public class MacSim {
     long tick;
 
     public static void main(String[] args) throws InterruptedException {
-        if(args.length == 1)
-			SUPPRESS = (int)args[0];
 		MacSim sim = new MacSim();
+		rand = new Random();
 		sim.startSimulation();
 	}
 
@@ -69,12 +64,12 @@ public class MacSim {
 
     void logCycle() {
         // log("\n\n\n");
-        log(3, "Total GDP at start: " + country.startGdp);
-        log(3, "Total GDP at finish: " + country.yGdp);
-        log(3, "Total growth rate since start: " + country.getTotalGrowthRate());
-        log(3, "Annualized growth since start: " + country.getAnnualizedGrowthRate());
-        log(3, "   or: " + (float)(int)(country.getAnnualizedGrowthRate() * 10000)/100.0 + "%");
-        log(3, " \n ");
+        // log(3, "Total GDP at start: " + country.startGdp);
+        // log(3, "Total GDP at finish: " + country.yGdp);
+        // log(3, "Total growth rate since start: " + country.getTotalGrowthRate());
+        // log(3, "Annualized growth since start: " + country.getAnnualizedGrowthRate());
+        // log(3, "   or: " + (float)(int)(country.getAnnualizedGrowthRate() * 10000)/100.0 + "%");
+        // log(3, " \n ");
     }
 
     void logYear() {
@@ -93,7 +88,7 @@ public class MacSim {
 
     void logTick() {
         p(3, ".");
-        p(2, "GDP change from last tick: " + 100 * country.dGdp);
+        // p(2, "GDP change from last tick: " + 100 * country.dGdp);
     }
 
     void updatePreController() {

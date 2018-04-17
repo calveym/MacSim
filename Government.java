@@ -39,7 +39,7 @@ public class Government {
     // tax last tick income
     void collectTaxes(double overrideRate) {
         taxRevenue = 0;
-        for(Company co : country.companies) {
+        for(Company co : country.economy.companies) {
             collectTaxableIncome(co.tax(overrideRate));
         }
         // System.out.println("Total tax revenue this quarter: " + taxRevenue);

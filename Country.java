@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Country {
-	
+
 	Economy economy;
 	Government government;
 	PopulationManager pop;
@@ -19,4 +19,7 @@ public class Country {
 		government.tick(tick);
 	}
 
+	public void quarterlyReport() {
+		
+	}
 }

@@ -20,8 +20,8 @@ public class SpendingPlan {
 
     public void tick() {
         long perTickSpend = totalSpend / length;
-        int numCompanies = country.getNumCompanies();
-        for(Company co : country.companies) {
+        int numCompanies = country.economy.companies.size();
+        for(Company co : country.economy.companies) {
             if(co.value < minBarrier || co.value > maxBarrier) return;
             co.invest(perTickSpend / numCompanies);
         }
