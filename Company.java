@@ -7,7 +7,9 @@ public class Company {
 
     int id; // assigned company id
 
+
     // Employee information
+    int productivity; // baseline employee productivity
     int technology; // 0 - 100 score for innovation
     double techVal; // calculated technology score
     int education; // 0 - 5 score for education
@@ -38,14 +40,21 @@ public class Company {
     long lqExpenses;
     long lqProfit;
 
+
+    // Goods
+    int outResId; // outResource ID, -1 = service, 0 = oil
+    int inResId;  // inResource ID, -1 = no input good, 0 = oil
+    long totalRes = 0; // Total amount of final good
+
     // Equity
     int stocksOutstanding;
     double stockPrice;
 
-    public Company(Economy eco, int numEmp, int newId) {
+    public Company(Economy econ, int newId, int newIn, int newOut, int numEmp, int newProd) {
         id = newId;
-		economy = eco;
-        country = eco.country;
+        economy = econ;
+        inResId = newIn;
+        outResId = newOut;
         stocksOutstanding = 100;
         stockPrice = 1;
 
@@ -55,6 +64,7 @@ public class Company {
         interest = 0.02;
         maintenance = 0.1;
 
+        productivity = newProd;
         employees = numEmp;
         education = 2;
         technology = 20;
@@ -75,6 +85,17 @@ public class Company {
             lqProfit = 0;
         }
 
+        updateProduction();
+        updateFinancials();
+    }
+
+    void updateProduction() {
+        totalRes += employees * productivity;
+        MacSim.log(5, "Total oil produced: " + totalRes);
+        sellResources();
+    }
+
+    void updateFinancials() {
         revenue = calculateRevenue();
         expenses = calculateExpenses();
         // revenue += assetRevenue();
@@ -88,6 +109,14 @@ public class Company {
         lqExpenses += expenses;
         lqProfit += profit;
         value = capital + assets - debt;
+    }
+
+    void sellResources() {
+        MacSim.log(5, "PRice: " + economy);
+        long price = economy.market.resources.get(outResId).price(totalRes);
+        if(economy.market.resources.get(outResId).produce(totalRes)) {
+            capital += price;
+        }
     }
 
     void quarterlyReport() {
@@ -176,9 +205,10 @@ public class Company {
     }
 
     int updateReach() {
-        techVal = 1.0 - (technology * 0.002 + 0.01);
-        double empTech = (employees) / techVal;
-        return (int)(country.pop.totalPop * (int)empTech);
+        //techVal = 1.0 - (technology * 0.002 + 0.01);
+        //double empTech = (employees) / techVal;
+        //return (int)(country.pop.totalPop * (int)empTech);
+        return 1;
     }
 
     double updateMultiplier() {

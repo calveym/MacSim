@@ -15,6 +15,8 @@ public class PopulationManager {
 	public PopulationManager(Country newCountry, int newPop) {
 		country = newCountry;
 		totalPop = newPop;
+		lf = totalPop;
+		unemployed = totalPop;
 	}
 
 	public void tick(long tick) {
@@ -24,6 +26,10 @@ public class PopulationManager {
 	public void recalculateVars() {
 		unemployed = lf - employed;
 	}
+
+	public void fire(int numToFire) {
+	    employed -= numToFire;
+    }
 
 	public void hire(int numToHire) {
 		employed += numToHire;

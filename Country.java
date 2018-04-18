@@ -2,16 +2,16 @@ import java.util.*;
 
 public class Country {
 
-	Economy economy;
+    PopulationManager pop;
+    Economy economy;
 	Government government;
-	PopulationManager pop;
 
 	public Country(int newPop, int numCo, double taxRate, int suppressionLevel) {
 		MacSim.log(5, "Creating country... ");
 
 		pop = new PopulationManager(this, newPop);
 		government = new Government(this, taxRate);
-		economy = new Economy(this, numCo, taxRate, suppressionLevel);
+		economy = new Economy(this, numCo, taxRate);
 	}
 
 	public void tick(long tick) {

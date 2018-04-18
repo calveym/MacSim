@@ -16,7 +16,6 @@ public class MacSim {
     boolean restart = false;
 
     // App variables
-    InputManager input;
     TickerController preController;
     TickerController postController;
 
@@ -43,7 +42,7 @@ public class MacSim {
 	}
 
     Country createCountry(double rate) {
-        return new Country(15000, 500, rate, SUPPRESS);
+        return new Country(20, 2, rate, SUPPRESS);
     }
 
     void sim(Country country) {
