@@ -14,7 +14,6 @@ public class GoodsMarket {
 
     private void updateResources() {
         for(Resource res : resources) {
-            MacSim.log(5, "TICK");
             res.tick();
         }
     }

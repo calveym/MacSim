@@ -91,7 +91,6 @@ public class Company {
 
     void updateProduction() {
         totalRes += employees * productivity;
-        MacSim.log(5, "Total oil produced: " + totalRes);
         sellResources();
     }
 
@@ -112,7 +111,6 @@ public class Company {
     }
 
     void sellResources() {
-        MacSim.log(5, "PRice: " + economy);
         long price = economy.market.resources.get(outResId).price(totalRes);
         if(economy.market.resources.get(outResId).produce(totalRes)) {
             capital += price;

@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d55b0b-5235-4d2f-ae59-d4edbc34bbc2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/GoodsMarket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Oil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Savable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goodsMarket1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/Country.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Economy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Economy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MacSim.java" beforeDir="false" afterPath="$PROJECT_DIR$/MacSim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PopulationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/PopulationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoodsMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/GoodsMarket.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +24,8 @@
                 <file leaf-file-name="Oil.java" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/Oil.java">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="135">
-                        <caret line="9" selection-start-line="9" selection-end-line="9" />
+                      <state relative-caret-position="45">
+                        <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
                       </state>
                     </provider>
                   </entry>
@@ -45,8 +37,8 @@
                 <file leaf-file-name="Resource.java" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/Resource.java">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="145">
-                        <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+                      <state relative-caret-position="-359">
+                        <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
                         <folding>
                           <element signature="e#1071#1072#0" expanded="true" />
                           <element signature="e#1123#1124#0" expanded="true" />
@@ -80,7 +72,7 @@
       <file leaf-file-name="MacSim.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MacSim.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-107">
+            <state relative-caret-position="-205">
               <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
               <folding>
                 <element signature="e#1134#1135#0" expanded="true" />
@@ -116,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GoodsMarket.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GoodsMarket.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GoodsMarket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+            <state relative-caret-position="180">
+              <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
               <folding>
                 <element signature="e#53#54#0" expanded="true" />
                 <element signature="e#74#75#0" expanded="true" />
@@ -131,11 +123,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Company.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Company.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
+            <state relative-caret-position="227">
+              <caret line="93" selection-start-line="93" selection-end-line="93" />
               <folding>
                 <element signature="e#3661#3662#0" expanded="true" />
                 <element signature="e#3697#3698#0" expanded="true" />
@@ -157,6 +149,13 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>PRice</find>
+      <find>Total oil</find>
+      <find>TICK</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -167,17 +166,17 @@
         <option value="$PROJECT_DIR$/Demandable.java" />
         <option value="$PROJECT_DIR$/Savable.java" />
         <option value="$PROJECT_DIR$/Oil.java" />
-        <option value="$PROJECT_DIR$/Resource.java" />
         <option value="$PROJECT_DIR$/MacSim.java" />
         <option value="$PROJECT_DIR$/PopulationManager.java" />
         <option value="$PROJECT_DIR$/Country.java" />
         <option value="$PROJECT_DIR$/GoodsMarket.java" />
         <option value="$PROJECT_DIR$/Economy.java" />
+        <option value="$PROJECT_DIR$/Resource.java" />
         <option value="$PROJECT_DIR$/Company.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="23" />
     <option name="width" value="866" />
     <option name="height" value="803" />
@@ -271,6 +270,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -280,7 +280,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
     </layout>
@@ -340,28 +339,6 @@
     <entry file="file://$PROJECT_DIR$/resources1.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Oil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-          <folding>
-            <element signature="e#1071#1072#0" expanded="true" />
-            <element signature="e#1123#1124#0" expanded="true" />
-            <element signature="e#1161#1162#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
-            <element signature="e#1231#1232#0" expanded="true" />
-            <element signature="e#1280#1281#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cycle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -384,34 +361,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MacSim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-107">
-          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
-          <folding>
-            <element signature="e#1134#1135#0" expanded="true" />
-            <element signature="e#1196#1197#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Country.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GoodsMarket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-          <folding>
-            <element signature="e#53#54#0" expanded="true" />
-            <element signature="e#74#75#0" expanded="true" />
-            <element signature="e#180#181#0" expanded="true" />
-            <element signature="e#201#202#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -422,10 +375,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MacSim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-205">
+          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+          <folding>
+            <element signature="e#1134#1135#0" expanded="true" />
+            <element signature="e#1196#1197#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Oil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-359">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#1071#1072#0" expanded="true" />
+            <element signature="e#1123#1124#0" expanded="true" />
+            <element signature="e#1161#1162#0" expanded="true" />
+            <element signature="e#1193#1194#0" expanded="true" />
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Company.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
+        <state relative-caret-position="227">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
           <folding>
             <element signature="e#3661#3662#0" expanded="true" />
             <element signature="e#3697#3698#0" expanded="true" />
@@ -433,6 +419,19 @@
             <element signature="e#4866#4867#0" expanded="true" />
             <element signature="e#5387#5388#0" expanded="true" />
             <element signature="e#5431#5432#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GoodsMarket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="e#53#54#0" expanded="true" />
+            <element signature="e#74#75#0" expanded="true" />
+            <element signature="e#180#181#0" expanded="true" />
+            <element signature="e#201#202#0" expanded="true" />
           </folding>
         </state>
       </provider>
