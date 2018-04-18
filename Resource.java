@@ -10,7 +10,7 @@ public class Resource {
     long difficulty; // cost per hour to produce
     long amount; // total amount of this demandable available
 
-    double price;  // price of this demandable, based on demand / amount
+    double price = 10;  // price of this demandable, based on demand / amount
 
 
     // Constructors
@@ -37,7 +37,7 @@ public class Resource {
     }
 
     void calculatePrice() {
-        price = difficulty * demand / amount;
+        //price = difficulty * demand / amount;
     }
 
     public void demand(int amount) {
@@ -45,7 +45,7 @@ public class Resource {
     }
 
     public long price(long amount) {
-        return (long)amount * (long)price;
+        return amount * (long)price;
     }
 
     public boolean produce(long amt) {

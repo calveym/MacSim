@@ -78,7 +78,7 @@ public class Company {
             // One quarter
             // investCapital();
 
-            if(id == 0 && MacSim.SUPPRESS == 1)
+            if(id == 0)
                 quarterlyReport();
             lqRevenue = 0;
             lqExpenses = 0;
@@ -95,7 +95,6 @@ public class Company {
     }
 
     void updateFinancials() {
-        revenue = calculateRevenue();
         expenses = calculateExpenses();
         // revenue += assetRevenue();
 
@@ -113,14 +112,16 @@ public class Company {
     void sellResources() {
         long price = economy.market.resources.get(outResId).price(totalRes);
         if(economy.market.resources.get(outResId).produce(totalRes)) {
-            capital += price;
+            totalRes = 0;
+            revenue = price;
         }
     }
 
     void quarterlyReport() {
         MacSim.log(2, " ");
         MacSim.log(2, "Quarterly report: " + id);
-        MacSim.log(2, "Assets: " + assets);
+        MacSim.log(3, "Resources produced: " + totalRes);
+		MacSim.log(2, "Assets: " + assets);
         MacSim.log(2, "Capital: " + capital);
         MacSim.log(2, "Employees: " + employees);
         MacSim.log(2, "Profit: " + lqProfit);
@@ -172,14 +173,6 @@ public class Company {
     void convertCapital(long amount) {
         assets += amount;
         capital -= amount;
-    }
-
-    long calculateRevenue() {
-        // multiplier     (education + 1) / 2.0;
-        // reach
-        reach = updateReach();
-        multiplier = updateMultiplier();
-        return (long)(reach * multiplier * 0.027);
     }
 
     long calculateExpenses() {
