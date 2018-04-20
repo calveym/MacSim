@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03d55b0b-5235-4d2f-ae59-d4edbc34bbc2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WindowController.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Economy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Economy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Oil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Oil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MacSim.java" beforeDir="false" afterPath="$PROJECT_DIR$/MacSim.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,36 +57,70 @@
     <window id="1">
       <content type="file-editors">
         <state>
-          <leaf>
-            <file leaf-file-name="Company.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/Company.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="615">
-                    <caret line="140" column="81" selection-start-line="140" selection-start-column="81" selection-end-line="140" selection-end-column="81" />
-                    <folding>
-                      <element signature="e#4400#4401#0" expanded="true" />
-                      <element signature="e#4436#4437#0" expanded="true" />
-                      <element signature="e#5328#5329#0" expanded="true" />
-                      <element signature="e#5379#5380#0" expanded="true" />
-                      <element signature="e#5924#5925#0" expanded="true" />
-                      <element signature="e#5968#5969#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
+          <splitter split-orientation="vertical" split-proportion="0.5006135">
+            <split-first>
+              <leaf>
+                <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
+                  <entry file="file://$PROJECT_DIR$/Company.java">
+                    <provider selected="true" editor-type-id="text-editor">
+                      <state relative-caret-position="330">
+                        <caret line="121" selection-start-line="121" selection-end-line="121" />
+                        <folding>
+                          <element signature="e#4400#4401#0" expanded="true" />
+                          <element signature="e#4436#4437#0" expanded="true" />
+                          <element signature="e#5328#5329#0" expanded="true" />
+                          <element signature="e#5379#5380#0" expanded="true" />
+                          <element signature="e#5924#5925#0" expanded="true" />
+                          <element signature="e#5968#5969#0" expanded="true" />
+                        </folding>
+                      </state>
+                    </provider>
+                  </entry>
+                </file>
+                <file leaf-file-name="WindowController.java" pinned="false" current-in-tab="true">
+                  <entry file="file://$PROJECT_DIR$/WindowController.java">
+                    <provider selected="true" editor-type-id="text-editor">
+                      <state relative-caret-position="287">
+                        <caret line="42" selection-start-line="42" selection-end-line="42" />
+                        <folding>
+                          <element signature="imports" expanded="true" />
+                          <element signature="e#768#769#0" expanded="true" />
+                          <element signature="e#817#818#0" expanded="true" />
+                          <element signature="e#976#977#0" expanded="true" />
+                          <element signature="e#1020#1021#0" expanded="true" />
+                        </folding>
+                      </state>
+                    </provider>
+                  </entry>
+                </file>
+              </leaf>
+            </split-first>
+            <split-second>
+              <leaf>
+                <file leaf-file-name="WindowController.fxml" pinned="false" current-in-tab="true">
+                  <entry file="file://$PROJECT_DIR$/WindowController.fxml">
+                    <provider selected="true" editor-type-id="text-editor">
+                      <state relative-caret-position="175">
+                        <caret line="12" column="64" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+                      </state>
+                    </provider>
+                    <provider editor-type-id="JavaFX-Scene-Builder" />
+                  </entry>
+                </file>
+              </leaf>
+            </split-second>
+          </splitter>
         </state>
       </content>
     </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Economy.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Economy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Economy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="84" column="32" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
+            <state relative-caret-position="133">
+              <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
               <folding>
                 <element signature="e#352#361#0" expanded="true" />
               </folding>
@@ -96,12 +128,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MacSim.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MacSim.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MacSim.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-572">
-              <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+            <state relative-caret-position="396">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1071#1072#0" expanded="true" />
+                <element signature="e#1091#1092#0" expanded="true" />
                 <element signature="e#1134#1135#0" expanded="true" />
                 <element signature="e#1191#1192#0" expanded="true" />
               </folding>
@@ -146,6 +181,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -165,7 +202,6 @@
         <option value="$PROJECT_DIR$/resources1.csv" />
         <option value="$PROJECT_DIR$/Demandable.java" />
         <option value="$PROJECT_DIR$/Savable.java" />
-        <option value="$PROJECT_DIR$/MacSim.java" />
         <option value="$PROJECT_DIR$/PopulationManager.java" />
         <option value="$PROJECT_DIR$/Country.java" />
         <option value="$PROJECT_DIR$/GoodsMarket.java" />
@@ -173,6 +209,9 @@
         <option value="$PROJECT_DIR$/Resource.java" />
         <option value="$PROJECT_DIR$/Economy.java" />
         <option value="$PROJECT_DIR$/Company.java" />
+        <option value="$PROJECT_DIR$/MacSim.java" />
+        <option value="$PROJECT_DIR$/WindowController.java" />
+        <option value="$PROJECT_DIR$/WindowController.fxml" />
       </list>
     </option>
   </component>
@@ -274,6 +313,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32974428" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.32945737" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -297,11 +337,15 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="7" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Economy.java">
@@ -319,6 +363,9 @@
         <state relative-caret-position="645">
           <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1071#1072#0" expanded="true" />
+            <element signature="e#1091#1092#0" expanded="true" />
             <element signature="e#1134#1135#0" expanded="true" />
             <element signature="e#1191#1192#0" expanded="true" />
           </folding>
@@ -362,6 +409,9 @@
         <state relative-caret-position="645">
           <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1071#1072#0" expanded="true" />
+            <element signature="e#1091#1092#0" expanded="true" />
             <element signature="e#1134#1135#0" expanded="true" />
             <element signature="e#1191#1192#0" expanded="true" />
           </folding>
@@ -475,27 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MacSim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-572">
-          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
-          <folding>
-            <element signature="e#1134#1135#0" expanded="true" />
-            <element signature="e#1191#1192#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Economy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="84" column="32" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
-          <folding>
-            <element signature="e#352#361#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
@@ -509,8 +538,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Company.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="140" column="81" selection-start-line="140" selection-start-column="81" selection-end-line="140" selection-end-column="81" />
+        <state relative-caret-position="330">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
           <folding>
             <element signature="e#4400#4401#0" expanded="true" />
             <element signature="e#4436#4437#0" expanded="true" />
@@ -521,6 +550,52 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Economy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+          <folding>
+            <element signature="e#352#361#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MacSim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1071#1072#0" expanded="true" />
+            <element signature="e#1091#1092#0" expanded="true" />
+            <element signature="e#1134#1135#0" expanded="true" />
+            <element signature="e#1191#1192#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#817#818#0" expanded="true" />
+            <element signature="e#976#977#0" expanded="true" />
+            <element signature="e#1020#1021#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WindowController.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="12" column="64" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">

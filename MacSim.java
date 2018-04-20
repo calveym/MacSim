@@ -1,5 +1,10 @@
 import java.util.*;
 
+import javafx.application.Application;
+import javafx.scene.*;
+import javafx.fxml.*;
+import java.net.URL;
+
 public class MacSim {
 
     static int SUPPRESS = 2; // Debugging system controller. Has 5 states
@@ -23,23 +28,25 @@ public class MacSim {
     Country country;
     long tick;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, java.io.IOException{
 		MacSim sim = new MacSim();
-		rand = new Random();
 		sim.startSimulation();
 	}
 
-    public void startSimulation() throws InterruptedException {
+    public void startSimulation() throws InterruptedException, java.io.IOException {
+
         // Setup instant vars
         log(4, "Starting Simulation...");
         log(4, "");
+        rand = new Random();
         reset(20);
 
-    	while(tick < simLength) {
-			Thread.sleep(20);
-			sim();
-		}
+        sim();
 	}
+
+	public void advanceTime() {
+        sim(country);
+    }
 
     Country createCountry(double rate) {
         return new Country(20, 2, rate, SUPPRESS);
