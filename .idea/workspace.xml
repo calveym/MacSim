@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03d55b0b-5235-4d2f-ae59-d4edbc34bbc2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/WindowController.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MacSim.java" beforeDir="false" afterPath="$PROJECT_DIR$/MacSim.java" afterDir="false" />
-    </list>
+    <list default="true" id="03d55b0b-5235-4d2f-ae59-d4edbc34bbc2" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +20,8 @@
                 <file leaf-file-name="Resource.java" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/Resource.java">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="512">
-                        <caret line="55" selection-start-line="55" selection-end-line="55" />
+                      <state relative-caret-position="257">
+                        <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
                         <folding>
                           <element signature="e#1121#1122#0" expanded="true" />
                           <element signature="e#1173#1174#0" expanded="true" />
@@ -80,8 +75,8 @@
                 <file leaf-file-name="WindowController.java" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/WindowController.java">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="287">
-                        <caret line="42" selection-start-line="42" selection-end-line="42" />
+                      <state relative-caret-position="301">
+                        <caret line="35" column="26" lean-forward="true" selection-start-line="35" selection-end-line="36" />
                         <folding>
                           <element signature="imports" expanded="true" />
                           <element signature="e#768#769#0" expanded="true" />
@@ -100,8 +95,8 @@
                 <file leaf-file-name="WindowController.fxml" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/WindowController.fxml">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="175">
-                        <caret line="12" column="64" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+                      <state relative-caret-position="156">
+                        <caret line="12" column="155" selection-start-line="12" selection-start-column="139" selection-end-line="12" selection-end-column="155" />
                       </state>
                     </provider>
                     <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -131,8 +126,8 @@
       <file leaf-file-name="MacSim.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MacSim.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="-1118">
+              <caret line="32" column="30" lean-forward="true" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1071#1072#0" expanded="true" />
@@ -216,8 +211,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="724" />
-    <option name="y" value="96" />
+    <option name="x" value="711" />
+    <option name="y" value="51" />
     <option name="width" value="894" />
     <option name="height" value="871" />
   </component>
@@ -308,7 +303,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="724" y="96" width="894" height="871" extended-state="0" />
+    <frame x="711" y="51" width="894" height="871" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -344,7 +339,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -525,17 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="e#1121#1122#0" expanded="true" />
-            <element signature="e#1173#1174#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Company.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -561,24 +545,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MacSim.java">
+    <entry file="file://$PROJECT_DIR$/WindowController.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="156">
+          <caret line="12" column="155" selection-start-line="12" selection-start-column="139" selection-end-line="12" selection-end-column="155" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1071#1072#0" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
-            <element signature="e#1134#1135#0" expanded="true" />
-            <element signature="e#1191#1192#0" expanded="true" />
+            <element signature="e#1121#1122#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="301">
+          <caret line="35" column="26" lean-forward="true" selection-start-line="35" selection-end-line="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#768#769#0" expanded="true" />
@@ -589,13 +578,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WindowController.fxml">
+    <entry file="file://$PROJECT_DIR$/MacSim.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="12" column="64" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+        <state relative-caret-position="-1118">
+          <caret line="32" column="30" lean-forward="true" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1071#1072#0" expanded="true" />
+            <element signature="e#1091#1092#0" expanded="true" />
+            <element signature="e#1134#1135#0" expanded="true" />
+            <element signature="e#1191#1192#0" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">

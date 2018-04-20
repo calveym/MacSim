@@ -12,11 +12,11 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WindowController">
     <Label fx:id="test" GridPane.rowIndex="1" />
-   <ScrollPane layoutX="600.0" prefHeight="600.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-woidth: 1px;">
+   <ScrollPane layoutX="600.0" prefHeight="600.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 1px;">
      <content>
        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
             <children>
-                <Button layoutX="22.0" layoutY="93.0" onAction="#test" text="Test" />
+                <Button layoutX="24.0" layoutY="84.0" onAction="#test" text="Test" />
             </children>
          </AnchorPane>
      </content>
