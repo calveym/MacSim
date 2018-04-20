@@ -37,7 +37,7 @@ public class Resource {
     }
 
     void calculatePrice() {
-        //price = difficulty * demand / amount;
+        price = difficulty * demand / amount;
     }
 
     public void demand(int amount) {
@@ -54,13 +54,14 @@ public class Resource {
         return true;
     }
 
-    public boolean trade(long amt) {
+    public int trade(int amt) {
         if(amt <= amount) {
             amount -= amt;
+            double tempPrice = price;
             calculatePrice();
-            return true;
+            return (int)tempPrice * amt;
         } else {
-            return false;
+            return 0;
         }
     }
 }

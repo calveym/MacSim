@@ -20,7 +20,7 @@ public class Company {
 
 
     // Money
-    long value; // total value of company
+    long value; // total value added last tick
     long assets; // illiquid assets of company, earns interest
     long capital; // liquid assets of company
     long debt; // liabilities
@@ -42,19 +42,22 @@ public class Company {
 
 
     // Goods
+    double inResDem; // inresource demand
     int outResId; // outResource ID, -1 = service, 0 = oil
     int inResId;  // inResource ID, -1 = no input good, 0 = oil
     long totalRes = 0; // Total amount of final good
+    long lqRes;
 
     // Equity
     int stocksOutstanding;
     double stockPrice;
 
-    public Company(Economy econ, int newId, int newIn, int newOut, int numEmp, int newProd) {
+    public Company(Economy econ, int newId, int newIn, int newOut, double newInResDem, int numEmp, int newProd) {
         id = newId;
         economy = econ;
         inResId = newIn;
         outResId = newOut;
+        inResDem = newInResDem;
         stocksOutstanding = 100;
         stockPrice = 1;
 
@@ -78,19 +81,28 @@ public class Company {
             // One quarter
             // investCapital();
 
-            if(id == 0)
+            if(true)
                 quarterlyReport();
             lqRevenue = 0;
             lqExpenses = 0;
             lqProfit = 0;
+            lqRes = 0;
         }
 
+        updateDemand();
         updateProduction();
         updateFinancials();
     }
 
     void updateProduction() {
-        totalRes += employees * productivity;
+        value = employees * productivity;
+        if(outResId == -1) {
+            revenue = value;
+        } else {
+            totalRes = value;
+        }
+        //MacSim.log(5, "TotalRes: " + totalRes);
+        buyResources();
         sellResources();
     }
 
@@ -102,25 +114,38 @@ public class Company {
         debtPayment = 0.04 * (debt * interest);
         ebitda -= debtPayment;
         capital += ebitda;
-
         lqRevenue += revenue;
         lqExpenses += expenses;
         lqProfit += profit;
-        value = capital + assets - debt;
+        revenue = 0;
     }
 
     void sellResources() {
+        if(outResId == -1) return;
         long price = economy.market.resources.get(outResId).price(totalRes);
-        if(economy.market.resources.get(outResId).produce(totalRes)) {
-            totalRes = 0;
-            revenue = price;
+        economy.market.resources.get(outResId).produce(totalRes);
+        lqRes += totalRes;
+        totalRes = 0;
+        revenue = price;
+    }
+
+    void buyResources() {
+        if(inResId == -1) return; // return if no input
+        int amtBuy = (int)(value * inResDem);
+        int cost = economy.market.resources.get(inResId).trade(amtBuy);
+        capital -= cost;
+    }
+
+    void updateDemand() {
+        if(inResId != -1) {
+            economy.market.resources.get(inResId).demand((int)(value * inResDem));
         }
     }
 
     void quarterlyReport() {
         MacSim.log(2, " ");
         MacSim.log(2, "Quarterly report: " + id);
-        MacSim.log(3, "Resources produced: " + totalRes);
+        MacSim.log(3, "Resources produced: " + lqRes);
 		MacSim.log(2, "Assets: " + assets);
         MacSim.log(2, "Capital: " + capital);
         MacSim.log(2, "Employees: " + employees);

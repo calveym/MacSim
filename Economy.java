@@ -75,17 +75,20 @@ public class Economy {
 		int remainder = country.pop.unemployed % num;
 		MacSim.log(3, "Generating " + num + " companies");
 
-		for(int i = 0; i < num; i++) {
-			if(i < remainder) {
-				generateCompany(each + remainder, -1, 0);
-			} else {
-				generateCompany(each, -1, 0);
-			}
-		}
+//		for(int i = 0; i < num - 1; i++) {
+////			if(i < remainder) {
+////				generateCompany(each + remainder, -1, 0, 1);
+////			} else {
+////				generateCompany(each, -1, 0, 1);
+////			}
+////		}
+        generateCompany(10, -1, 0, 1);
+
+        generateCompany(10, 0, -1, 0.1);
 	}
 
-	void generateCompany(int hire, int inId, int outId) {
-		Company newCo = new Company(this, coId, inId, outId, hire, 1);
+	void generateCompany(int hire, int inId, int outId, double inResDem) {
+		Company newCo = new Company(this, coId, inId, outId, inResDem, hire, 10);
 		companies.add(newCo);
 		coId++;
 	}
