@@ -9,6 +9,9 @@ public class PopulationManager {
 
 	// Calculated vars
 	int unemployed;  // number unemployed
+	int employment;
+	int unemployment;
+	int lfpr;
 
 
 	// Constructors
@@ -25,6 +28,9 @@ public class PopulationManager {
 
 	public void recalculateVars() {
 		unemployed = lf - employed;
+		employment = employed / lf;
+		unemployment = unemployed / lf;
+		lfpr = lf / totalPop;
 	}
 
 	public void fire(int numToFire) {

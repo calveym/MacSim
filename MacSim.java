@@ -1,9 +1,5 @@
 import java.util.*;
 
-import javafx.application.Application;
-import javafx.scene.*;
-import javafx.fxml.*;
-import java.net.URL;
 
 public class MacSim {
 
@@ -43,10 +39,6 @@ public class MacSim {
 
         sim();
 	}
-
-	public void advanceTime() {
-        sim(country);
-    }
 
     Country createCountry(double rate) {
         return new Country(20, 2, rate, SUPPRESS);

@@ -1,16 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="WindowController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Button text="Test" onAction="#test"/>
-    <Label GridPane.rowIndex="1" fx:id="test"/>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WindowController">
+    <Label fx:id="test" GridPane.rowIndex="1" />
+   <ScrollPane layoutX="600.0" prefHeight="600.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 1px;">
+     <content>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <Button layoutX="15.0" layoutY="19.0" onAction="#test" text="Fn 1" />
+            </children>
+         </AnchorPane>
+     </content>
+   </ScrollPane>
+   <TabPane layoutY="60.0" prefHeight="349.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="Overview">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="502.0">
+                  <children>
+                     <LineChart layoutX="242.0" layoutY="14.0" prefHeight="238.0" prefWidth="344.0" title="GDP">
+                       <xAxis>
+                         <CategoryAxis side="BOTTOM" />
+                       </xAxis>
+                       <yAxis>
+                         <NumberAxis side="LEFT" />
+                       </yAxis>
+                     </LineChart>
+                  </children></AnchorPane>
+         </content>
+       </Tab>
+       <Tab text="Economy">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+         </content>
+       </Tab>
+         <Tab text="Company">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+         </Tab>
+         <Tab text="Markets">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+         </Tab>
+         <Tab text="Resources">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+         </Tab>
+         <Tab>
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+         </Tab>
+     </tabs>
+   </TabPane>
+   <Pane prefHeight="60.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 1px;">
+      <children>
+         <ButtonBar layoutX="10.0" layoutY="5.0" prefHeight="40.0" prefWidth="578.0">
+           <buttons>
+             <Button mnemonicParsing="false" text="Advance Tick" />
+               <Button mnemonicParsing="false" text="Start/Stop" />
+               <Button mnemonicParsing="false" text="Button" />
+               <Button mnemonicParsing="false" text="Button" />
+               <Button mnemonicParsing="false" text="Button" />
+           </buttons>
+         </ButtonBar>
+      </children>
+   </Pane>
+   <Pane layoutY="413.0" prefHeight="187.0" prefWidth="600.0" />
 
 </AnchorPane>

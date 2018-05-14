@@ -5,6 +5,11 @@ This project is designed to create a semi-realistic simulation of a full countri
 
 The eventual goal of this project is the provide the user a means of manipulating every aspect of the country, from the flow of citizens, resources, companies, governments, money, debt, poverty and more.
 
+## To run: 
+ - `javac *.java`
+ - `java WindowController`
+
+
 ## Components:
 The simulation consists of the continuous updating of independent agents within a country.
 
