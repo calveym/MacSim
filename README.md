@@ -10,6 +10,17 @@ The eventual goal of this project is the provide the user a means of manipulatin
  - `java WindowController`
 
 
+## TODO:
+ UI:
+ - Autorun
+ - Run speed selection
+ - Economy Info Tab
+ - Company Info Tab
+ - Markets Info Tab
+ - Resources Info Tab
+ - Affector buttons
+
+
 ## Components:
 The simulation consists of the continuous updating of independent agents within a country.
 

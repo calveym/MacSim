@@ -83,13 +83,14 @@
          <ButtonBar layoutX="10.0" layoutY="5.0" prefHeight="40.0" prefWidth="460.0">
            <buttons>
                <CheckBox id="autorun" minWidth="0.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Autorun" />
-             <Button id="advanceTime" mnemonicParsing="false" text="Advance Tick" onAction="#sim"/>
+             <Button id="advanceTime" mnemonicParsing="false" onAction="#sim" text="Advance Tick" />
                <Button minWidth="28.0" mnemonicParsing="false" prefHeight="32.0" text="1x" />
                <Button mnemonicParsing="false" text="2x" />
                <Button mnemonicParsing="false" text="3x" />
            </buttons>
          </ButtonBar>
-         <Label layoutX="493.0" layoutY="16.0" text="CURRENT TIME" />
+         <Label layoutX="512.0" layoutY="16.0" text="Y | Q | T" />
+         <Label id="curTime" alignment="CENTER" contentDisplay="CENTER" layoutX="511.0" layoutY="36.0" text="Y | Q | T" textAlignment="CENTER" />
       </children>
    </Pane>
    <Pane layoutY="413.0" prefHeight="187.0" prefWidth="600.0" />

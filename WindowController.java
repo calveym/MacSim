@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.HashMap;
 
 public class WindowController extends Application {
 
@@ -21,6 +22,8 @@ public class WindowController extends Application {
 
     @FXML
     private Label gdpLabel;
+    @FXML
+    private Label curTime;
 
     public static void main(String[] args) {
         launch(args);
@@ -39,25 +42,31 @@ public class WindowController extends Application {
         primaryStage.show();
         sim = new MacSim(this);
         sim.startSimulation();
-        MacSim.log(5, "Hey hey: " + sim);
-
     }
 
     // ______________________________________________________
     // UI Updates
 
-    public void update(long gdp) {
-        updateLabels(gdp);
+    public void update(HashMap<String, String> values) {
+        if(root == null) return;
+
+        updateGdp(values.get("gdp"));
+        updateTime(values.get("tick"), values.get("year"), values.get("quarter"));
     }
 
 
     @FXML
-    private void updateLabels(long gdp) {
-        if(root == null) return;
-        MacSim.log(1, "Hello we r here: " + gdp);
+    private void updateGdp(String gdp) {
+        if(gdpLabel == null)
+            gdpLabel = (Label) root.lookup("#gdp");
+        gdpLabel.setText(gdp);
+    }
 
-        gdpLabel = (Label) root.lookup("#gdp");
-        gdpLabel.setText(Long.toString(gdp));
+    @FXML
+    private void updateTime(String tick, String year, String quarter) {
+        if(curTime == null)
+            curTime = (Label) root.lookup("#curTime");
+        curTime.setText(year + " | " + quarter + " | " + tick);
     }
 
     public void test(ActionEvent actionEvent) {
@@ -65,7 +74,6 @@ public class WindowController extends Application {
     }
 
     public void sim(ActionEvent actionEvent) throws InterruptedException {
-        MacSim.log(5, "Hey hey: " + MacSim.sim);
         MacSim.sim.sim();
     }
 }

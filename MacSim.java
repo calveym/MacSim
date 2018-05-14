@@ -27,7 +27,11 @@ public class MacSim {
 
     // Simulation variables
     Country country;
+
     long tick;
+    int year;
+    int quarter;
+
 
     public MacSim(WindowController newController) {
         if(sim != null) return;
@@ -67,9 +71,12 @@ public class MacSim {
         logTick();
         if(tick%100 == 0 && tick > 0) {
             // One year
+            quarter = 0;
+            year++;
             logYear();
-        } else if(tick%25 == 0 && tick > 25) {
+        } else if(tick%25 == 0 && tick > 0) {
             // One quarter
+            quarter++;
             logQuarter();
         }
         country.tick(tick);
@@ -117,7 +124,17 @@ public class MacSim {
     }
 
     void updateUI() {
-        controller.update(country.economy.gdp);
+        // create data hashmap
+        HashMap<String, String> temp = new HashMap<>();
+
+        // add required ui elts
+        temp.put("gdp", Long.toString(country.economy.gdp));
+        temp.put("tick", Long.toString(tick%25));
+        temp.put("year", Long.toString(year));
+        temp.put("quarter", Long.toString(quarter));
+
+
+        controller.update(temp);
     }
 
     void reset(double rate) {
