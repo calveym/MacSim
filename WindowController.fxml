@@ -82,8 +82,8 @@
       <children>
          <ButtonBar layoutX="10.0" layoutY="5.0" prefHeight="40.0" prefWidth="460.0">
            <buttons>
-               <CheckBox minWidth="0.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Autorun" />
-             <Button mnemonicParsing="false" text="Advance Tick" />
+               <CheckBox id="autorun" minWidth="0.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Autorun" />
+             <Button id="advanceTime" mnemonicParsing="false" text="Advance Tick" onAction="#sim"/>
                <Button minWidth="28.0" mnemonicParsing="false" prefHeight="32.0" text="1x" />
                <Button mnemonicParsing="false" text="2x" />
                <Button mnemonicParsing="false" text="3x" />

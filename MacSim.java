@@ -4,6 +4,7 @@ import java.util.*;
 public class MacSim {
 
     WindowController controller;
+    static MacSim sim; // this (singleton)
 
     static int SUPPRESS = 2; // Debugging system controller. Has 5 states
                      // for 5 levels of Debugging detail and cycle style.
@@ -16,7 +17,9 @@ public class MacSim {
     static Random rand;
 
 	int simLength = 10000; // how long the simulation lasts for
+    int simSpeed = 100;
     boolean restart = false;
+    boolean autorun = true;
 
     // App variables
     TickerController preController;
@@ -27,13 +30,10 @@ public class MacSim {
     long tick;
 
     public MacSim(WindowController newController) {
+        if(sim != null) return;
+        sim = this;
         controller = newController;
     }
-
-    public static void main(String[] args) throws InterruptedException, java.io.IOException{
-		MacSim sim = new MacSim(new WindowController());
-		sim.startSimulation();
-	}
 
     public void startSimulation() throws InterruptedException, java.io.IOException {
 
@@ -50,6 +50,17 @@ public class MacSim {
         return new Country(20, 2, rate, SUPPRESS);
     }
 
+    // simloop scheduler
+    public void sim() throws InterruptedException {
+        if (tick < simLength && autorun) {
+            sim(country);
+        }
+        logCycle();
+        if (restart)
+            reset(20);
+    }
+
+    // country simulator
     void sim(Country country) {
         tick++; // advance simulation by 1 tick
         updatePreController();
@@ -64,6 +75,8 @@ public class MacSim {
         country.tick(tick);
 
         updatePostController();
+
+        updateUI();
 	}
 
     void logCycle() {
@@ -103,22 +116,15 @@ public class MacSim {
         postController.tick(tick);
     }
 
+    void updateUI() {
+        controller.update(country.economy.gdp);
+    }
+
     void reset(double rate) {
         country = createCountry(rate);
         tick = 0;
         preController = new TickerController();
         postController = new TickerController();
-    }
-
-    // simloop scheduler
-    public void sim() {
-        if(tick > simLength) {
-            logCycle();
-            if(restart)
-            reset(20);
-            return;
-        }
-        sim(country);
     }
 
     public static void log(int logLevel, String s) {

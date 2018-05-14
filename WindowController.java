@@ -19,6 +19,9 @@ public class WindowController extends Application {
     MacSim sim;
     Parent root;
 
+    @FXML
+    private Label gdpLabel;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -30,28 +33,39 @@ public class WindowController extends Application {
         root = fxmlLoader.load();
         //System.out.println("NODE:" + root);
 
-        sim = new MacSim(this);
-        sim.startSimulation();
+
         primaryStage.setTitle("MacSim");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
-        updateText();
+        sim = new MacSim(this);
+        sim.startSimulation();
+        MacSim.log(5, "Hey hey: " + sim);
+
     }
 
-    @FXML
-    private Label gdp;
+    // ______________________________________________________
+    // UI Updates
+
+    public void update(long gdp) {
+        updateLabels(gdp);
+    }
+
 
     @FXML
-    private void updateText() {
+    private void updateLabels(long gdp) {
         if(root == null) return;
-        System.out.println("NODE:" + root);
+        MacSim.log(1, "Hello we r here: " + gdp);
 
-        gdp = (Label) root.lookup("#gdp");
-        gdp.setText("WE OUT HERE");
+        gdpLabel = (Label) root.lookup("#gdp");
+        gdpLabel.setText(Long.toString(gdp));
     }
 
     public void test(ActionEvent actionEvent) {
         MacSim.log(5, "TESTING 123");
     }
 
+    public void sim(ActionEvent actionEvent) throws InterruptedException {
+        MacSim.log(5, "Hey hey: " + MacSim.sim);
+        MacSim.sim.sim();
+    }
 }

@@ -10,6 +10,9 @@ public class Economy {
 	double spirits; // confidence -100 < x < 100
 	double dSpirits; // confidence delta
 
+	long gdp; // output per tick
+    long lastGdp; // output last tick
+
 	// Timing
 	int quarter;
 	int year;
@@ -35,11 +38,17 @@ public class Economy {
 	public void tick(long tick) {
 		updateCycle(tick);
 		updateSentiment(tick);
+        lastGdp = gdp;
+        gdp = 0;
 
 		for(Company company : companies) {
 		    company.tick(tick);
+		    gdp += company.profit;
         }
+
+        MacSim.log(1, "New gdp: " + gdp);
         market.tick();
+
 		if(tick % 25 == 0) {
 			updateQuarter();
 		}
