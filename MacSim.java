@@ -3,6 +3,8 @@ import java.util.*;
 
 public class MacSim {
 
+    WindowController controller;
+
     static int SUPPRESS = 2; // Debugging system controller. Has 5 states
                      // for 5 levels of Debugging detail and cycle style.
                      // 1: Verbose
@@ -24,8 +26,12 @@ public class MacSim {
     Country country;
     long tick;
 
+    public MacSim(WindowController newController) {
+        controller = newController;
+    }
+
     public static void main(String[] args) throws InterruptedException, java.io.IOException{
-		MacSim sim = new MacSim();
+		MacSim sim = new MacSim(new WindowController());
 		sim.startSimulation();
 	}
 
