@@ -124,17 +124,7 @@ public class MacSim {
     }
 
     void updateUI() {
-        // create data hashmap
-        HashMap<String, String> temp = new HashMap<>();
-
-        // add required ui elts
-        temp.put("gdp", Long.toString(country.economy.gdp));
-        temp.put("tick", Long.toString(tick%25));
-        temp.put("year", Long.toString(year));
-        temp.put("quarter", Long.toString(quarter));
-
-
-        controller.update(temp);
+        controller.update(this);
     }
 
     void reset(double rate) {
